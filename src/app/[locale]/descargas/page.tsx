@@ -1,5 +1,32 @@
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
 import { Smartphone, FileText, Download } from 'lucide-react';
+
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  const title =
+    locale === 'es' ? 'Mis Gastos — Descargas' : 'Mis Gastos — Downloads';
+  const description =
+    locale === 'es'
+      ? 'Descargá el APK de Mis Gastos para Android. Instalación directa, sin Google Play.'
+      : 'Download the Mis Gastos APK for Android. Direct install, no Google Play required.';
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://mis-gastos-web-three.vercel.app/${locale}/descargas`,
+      siteName: 'Mis Gastos',
+      images: [{ url: 'https://mis-gastos-web-three.vercel.app/og.png', width: 1200, height: 630 }],
+      locale: locale === 'es' ? 'es_AR' : 'en_US',
+      type: 'website',
+    },
+  };
+}
 
 const APK_VERSION = '1.1.1';
 const APK_BUILD = 3;
