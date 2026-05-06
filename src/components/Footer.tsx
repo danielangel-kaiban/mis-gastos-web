@@ -10,14 +10,6 @@ export default function Footer() {
         <p>{t('copyright', { year })}</p>
         <div className="flex items-center gap-4">
           <span className="text-xs font-mono text-muted-foreground/60">v1.1.1</span>
-          <a
-            href="https://github.com/dukagin/mis-gastos"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
-          >
-            GitHub
-          </a>
           <a href="#" className="hover:text-foreground transition-colors">
             {t('privacy')}
           </a>
