@@ -42,7 +42,7 @@ export default function Header() {
         </Link>
 
         {/* Nav */}
-        <nav className="hidden sm:flex items-center gap-6 text-sm font-medium">
+        <nav aria-label="Navegación principal" className="hidden sm:flex items-center gap-6 text-sm font-medium">
           <Link href="/" className="text-foreground/70 hover:text-foreground transition-colors">
             {t('home')}
           </Link>

@@ -51,6 +51,7 @@ export default function AppMockup({
           height={844}
           className="w-full h-auto"
           priority={priority}
+          preload={priority}
           unoptimized
         />
       </div>

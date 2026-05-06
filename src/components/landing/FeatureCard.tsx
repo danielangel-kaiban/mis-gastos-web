@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import type { LucideIcon } from 'lucide-react';
 
 interface FeatureCardProps {
@@ -10,17 +7,9 @@ interface FeatureCardProps {
   index: number;
 }
 
-export default function FeatureCard({ icon: Icon, title, description, index }: FeatureCardProps) {
+export default function FeatureCard({ icon: Icon, title, description, index: _index }: FeatureCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{
-        delay: (index % 3) * 0.1,
-        duration: 0.5,
-        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-      }}
+    <div
       className="group relative flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 hover:border-primary/40 hover:shadow-lg transition-all duration-300"
     >
       {/* Icon */}
@@ -36,6 +25,6 @@ export default function FeatureCard({ icon: Icon, title, description, index }: F
 
       {/* Hover accent line */}
       <div className="absolute bottom-0 left-6 right-6 h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
-    </motion.div>
+    </div>
   );
 }

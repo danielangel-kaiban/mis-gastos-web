@@ -256,7 +256,7 @@ export default async function FeaturesDetailPage({ params }: Props) {
         <p className="text-lg text-muted-foreground max-w-xl mx-auto">{t('subtitle')}</p>
 
         {/* Anchor nav */}
-        <nav className="mt-10 flex flex-wrap justify-center gap-2">
+        <nav aria-label="Ir a sección" className="mt-10 flex flex-wrap justify-center gap-2">
           {sections.map((s) => (
             <a
               key={s.id}

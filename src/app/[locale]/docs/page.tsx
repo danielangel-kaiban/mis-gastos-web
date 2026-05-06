@@ -105,9 +105,9 @@ export default async function DocsIndexPage({ params }: Props) {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-semibold text-foreground text-sm leading-5">
+                  <span className="font-semibold text-foreground text-sm leading-5">
                     {t(`section_${slug}`)}
-                  </h3>
+                  </span>
                   <ArrowRight
                     size={14}
                     className="shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary"

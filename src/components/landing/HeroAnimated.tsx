@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { Link } from '@/i18n/navigation';
 import AppMockup from './AppMockup';
 
@@ -19,27 +16,6 @@ export default function HeroAnimated({
   ctaDownload,
   ctaFeatures,
 }: HeroAnimatedProps) {
-  const EASE = [0.16, 1, 0.3, 1] as [number, number, number, number];
-
-  const fadeUp = {
-    hidden: { opacity: 0, y: 24 },
-    show: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.1, duration: 0.55, ease: EASE },
-    }),
-  };
-
-  const scaleIn = {
-    hidden: { opacity: 0, scale: 0.88 },
-    show: { opacity: 1, scale: 1, transition: { delay: 0.05, duration: 0.5, ease: EASE } },
-  };
-
-  const mockupEntry = {
-    hidden: { opacity: 0, y: 40, scale: 0.94 },
-    show: { opacity: 1, y: 0, scale: 1, transition: { delay: 0.35, duration: 0.7, ease: EASE } },
-  };
-
   return (
     <section className="relative overflow-hidden pt-20 pb-16 sm:pt-28 sm:pb-24">
       {/* Background gradient blob */}
@@ -53,48 +29,25 @@ export default function HeroAnimated({
           {/* Left: text */}
           <div className="flex-1 max-w-2xl">
             {/* Badge */}
-            <motion.div
-              variants={scaleIn}
-              initial="hidden"
-              animate="show"
-              className="inline-block mb-6"
-            >
+            <div className="inline-block mb-6">
               <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
                 <span className="size-2 rounded-full bg-primary animate-pulse" />
                 {badge}
               </span>
-            </motion.div>
+            </div>
 
             {/* Title */}
-            <motion.h1
-              custom={1}
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground mb-5"
-            >
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-foreground mb-5">
               {title}
-            </motion.h1>
+            </h1>
 
             {/* Subtitle */}
-            <motion.p
-              custom={2}
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-xl"
-            >
+            <p className="text-lg text-muted-foreground leading-relaxed mb-10 max-w-xl">
               {subtitle}
-            </motion.p>
+            </p>
 
             {/* CTAs */}
-            <motion.div
-              custom={3}
-              variants={fadeUp}
-              initial="hidden"
-              animate="show"
-              className="flex flex-col sm:flex-row gap-3 lg:justify-start justify-center"
-            >
+            <div className="flex flex-col sm:flex-row gap-3 lg:justify-start justify-center">
               <Link
                 href="/descargas"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg hover:bg-primary/90 transition-all hover:scale-[1.02] active:scale-[0.98]"
@@ -109,16 +62,11 @@ export default function HeroAnimated({
                 {ctaFeatures}
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </Link>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right: mockups stacked */}
-          <motion.div
-            variants={mockupEntry}
-            initial="hidden"
-            animate="show"
-            className="mt-16 lg:mt-0 flex-shrink-0 flex items-center justify-center gap-4"
-          >
+          <div className="mt-16 lg:mt-0 flex-shrink-0 flex items-center justify-center gap-4">
             {/* Secondary mockup (offset, smaller, behind) */}
             <div className="hidden sm:block translate-y-8 opacity-60 scale-90 origin-bottom">
               <AppMockup variant="transactions" className="w-[160px]" />
@@ -129,7 +77,7 @@ export default function HeroAnimated({
             <div className="hidden sm:block -translate-y-8 opacity-60 scale-90 origin-top">
               <AppMockup variant="reports" className="w-[160px]" />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

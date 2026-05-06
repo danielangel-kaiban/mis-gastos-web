@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { Link } from '@/i18n/navigation';
 import { Download } from 'lucide-react';
 
@@ -14,11 +11,7 @@ export default function FinalCta({ title, subtitle, btn }: FinalCtaProps) {
   return (
     <section className="py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+        <div
           className="relative overflow-hidden rounded-3xl px-8 py-16 sm:px-16 sm:py-20 text-center"
           style={{
             background: 'linear-gradient(135deg, #00897B 0%, #005F56 60%, #003D38 100%)',
@@ -43,13 +36,13 @@ export default function FinalCta({ title, subtitle, btn }: FinalCtaProps) {
             </p>
             <Link
               href="/descargas"
-              className="inline-flex items-center gap-2.5 rounded-2xl bg-white px-8 py-4 text-base font-semibold text-[#00897B] shadow-xl hover:bg-white/90 transition-all hover:scale-[1.03] active:scale-[0.97]"
+              className="inline-flex items-center gap-2.5 rounded-2xl bg-white px-8 py-4 text-base font-semibold text-[#005F56] shadow-xl hover:bg-white/90 transition-all hover:scale-[1.03] active:scale-[0.97]"
             >
               <Download size={18} strokeWidth={2.2} />
               {btn}
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -26,9 +26,9 @@ export default async function DocsLayout({ children, params }: Props) {
           </aside>
 
           {/* Main content */}
-          <main className="min-w-0 flex-1 py-10">
+          <div className="min-w-0 flex-1 py-10">
             {children}
-          </main>
+          </div>
         </div>
       </div>
     </div>

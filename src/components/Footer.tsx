@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-6 py-4 text-sm text-muted-foreground">
         <p>{t('copyright', { year })}</p>
         <div className="flex items-center gap-4">
-          <span className="text-xs font-mono text-muted-foreground/60">v1.1.1</span>
+          <span className="text-xs font-mono text-muted-foreground">v1.1.1</span>
           <a href="#" className="hover:text-foreground transition-colors">
             {t('privacy')}
           </a>

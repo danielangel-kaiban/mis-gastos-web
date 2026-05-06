@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
+import { getLocale } from 'next-intl/server';
 import './globals.css';
 
 const inter = Inter({
@@ -19,13 +20,15 @@ export const metadata: Metadata = {
   description: 'Administrá gastos, cuentas, deudas e inversiones. 100% offline, sin nube.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
   return (
     <html
+      lang={locale}
       suppressHydrationWarning
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >

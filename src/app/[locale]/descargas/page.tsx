@@ -65,10 +65,14 @@ export default async function DescargasPage({ params }: Props) {
           <p className="text-sm text-muted-foreground">{t('android_desc')}</p>
 
           <dl className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
-            <dt className="text-muted-foreground">{t('android_version', { version: APK_VERSION })}</dt>
-            <dt className="text-muted-foreground">{t('android_build', { build: APK_BUILD })}</dt>
-            <dd className="text-muted-foreground">{t('android_size', { size: APK_SIZE })}</dd>
-            <dd className="text-muted-foreground">{t('android_date', { date: APK_DATE })}</dd>
+            <div>
+              <dt className="text-muted-foreground">{t('android_version', { version: APK_VERSION })}</dt>
+              <dd className="text-muted-foreground">{t('android_size', { size: APK_SIZE })}</dd>
+            </div>
+            <div>
+              <dt className="text-muted-foreground">{t('android_build', { build: APK_BUILD })}</dt>
+              <dd className="text-muted-foreground">{t('android_date', { date: APK_DATE })}</dd>
+            </div>
           </dl>
 
           <a
@@ -100,11 +104,9 @@ export default async function DescargasPage({ params }: Props) {
             {isEs ? t('docs_es_desc') : t('docs_en_desc')}
           </p>
 
-          <dl className="grid grid-cols-1 gap-y-1 text-sm">
-            <dd className="text-muted-foreground">
-              {t('docs_size', { size: isEs ? PDF_ES_SIZE : PDF_EN_SIZE })}
-            </dd>
-          </dl>
+          <p className="text-sm text-muted-foreground">
+            {t('docs_size', { size: isEs ? PDF_ES_SIZE : PDF_EN_SIZE })}
+          </p>
 
           <a
             href={isEs ? PDF_ES_URL : PDF_EN_URL}
@@ -133,11 +135,9 @@ export default async function DescargasPage({ params }: Props) {
             {isEs ? t('docs_en_desc') : t('docs_es_desc')}
           </p>
 
-          <dl className="grid grid-cols-1 gap-y-1 text-sm">
-            <dd className="text-muted-foreground">
-              {t('docs_size', { size: isEs ? PDF_EN_SIZE : PDF_ES_SIZE })}
-            </dd>
-          </dl>
+          <p className="text-sm text-muted-foreground">
+            {t('docs_size', { size: isEs ? PDF_EN_SIZE : PDF_ES_SIZE })}
+          </p>
 
           <a
             href={isEs ? PDF_EN_URL : PDF_ES_URL}

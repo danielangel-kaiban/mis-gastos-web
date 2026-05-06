@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { Download, Settings, TrendingUp } from 'lucide-react';
 
 interface HowItWorksProps {
@@ -34,12 +31,8 @@ export default function HowItWorks({ title, subtitle, steps }: HowItWorksProps) 
           {steps.map((step, i) => {
             const Icon = STEP_ICONS[i];
             return (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ delay: i * 0.15, duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
                 className="relative flex flex-col items-center text-center md:items-center"
               >
                 {/* Step number + icon */}
@@ -55,7 +48,7 @@ export default function HowItWorks({ title, subtitle, steps }: HowItWorksProps) 
                 {/* Text */}
                 <h3 className="text-lg font-semibold text-foreground mb-2">{step.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">{step.desc}</p>
-              </motion.div>
+              </div>
             );
           })}
         </div>
