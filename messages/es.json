@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "features": "Funciones",
+    "docs": "Documentación",
+    "downloads": "Descargas"
+  },
+  "home": {
+    "hero_title": "Tu dinero, bajo control",
+    "hero_subtitle": "Administra gastos, cuentas, tarjetas, billeteras y monedas — todo en un solo lugar, sin conexión y sin nube.",
+    "cta_download": "Descargar para Android",
+    "cta_features": "Ver funciones",
+    "features_title": "Todo lo que necesitás",
+    "features_subtitle": "Diseñado para quienes quieren llevar sus finanzas con precisión y privacidad.",
+    "feature_accounts_title": "Múltiples cuentas",
+    "feature_accounts_desc": "Tarjetas, billeteras, bancos y efectivo en un solo panel. Colores e íconos personalizables.",
+    "feature_debts_title": "Deudas y préstamos",
+    "feature_debts_desc": "Seguimiento de lo que te deben y lo que debés. Pagos parciales con historial editable.",
+    "feature_investments_title": "Inversiones",
+    "feature_investments_desc": "Acciones, cripto, bonos, ETF y más. ROI automático y gráficos de evolución.",
+    "feature_reports_title": "Informes visuales",
+    "feature_reports_desc": "Gráficos de categorías, barras mensuales, línea de patrimonio y ranking.",
+    "feature_offline_title": "100% offline",
+    "feature_offline_desc": "Sin cuenta, sin nube, sin permisos de red. Tus datos permanecen en tu dispositivo.",
+    "feature_export_title": "Exportar e importar",
+    "feature_export_desc": "Backup completo a JSON. Llevá tus datos a donde quieras.",
+    "version_badge": "Versión {version}"
+  },
+  "downloads": {
+    "title": "Descargas",
+    "subtitle": "Instalá Mis Gastos directamente en tu Android.",
+    "android_title": "Android APK",
+    "android_desc": "Instalación directa. No requiere Google Play.",
+    "android_version": "Versión {version}",
+    "android_build": "Build {build}",
+    "android_size": "{size} MB",
+    "android_date": "Lanzamiento: {date}",
+    "android_btn": "Descargar APK",
+    "install_warning": "Activá \"Instalar desde fuentes desconocidas\" en Ajustes > Seguridad antes de instalar.",
+    "docs_title": "Documentación PDF",
+    "docs_coming": "Próximamente",
+    "docs_desc": "Guía completa de uso con capturas de pantalla.",
+    "changelog_title": "Cambios en esta versión",
+    "changelog_fixed": "Corregido",
+    "changelog_added": "Añadido",
+    "changelog_changed": "Cambiado"
+  },
+  "features": {
+    "title": "Funciones",
+    "subtitle": "Explorá todo lo que Mis Gastos pone a tu alcance."
+  },
+  "docs": {
+    "title": "Documentación",
+    "subtitle": "Guías, tutoriales y referencia para sacar el máximo provecho de la app."
+  },
+  "footer": {
+    "copyright": "© {year} Mis Gastos. Todos los derechos reservados.",
+    "privacy": "Privacidad",
+    "contact": "Contacto"
+  },
+  "theme": {
+    "toggle": "Cambiar tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
+  },
+  "locale": {
+    "switch_to": "English"
+  }
+}

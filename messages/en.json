@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "docs": "Docs",
+    "downloads": "Downloads"
+  },
+  "home": {
+    "hero_title": "Your money, under control",
+    "hero_subtitle": "Manage expenses, accounts, cards, wallets, and currencies — all in one place, offline and cloud-free.",
+    "cta_download": "Download for Android",
+    "cta_features": "See features",
+    "features_title": "Everything you need",
+    "features_subtitle": "Built for those who want precision and privacy in their finances.",
+    "feature_accounts_title": "Multiple accounts",
+    "feature_accounts_desc": "Cards, wallets, banks, and cash in one dashboard. Customizable colors and icons.",
+    "feature_debts_title": "Debts & loans",
+    "feature_debts_desc": "Track what you owe and what's owed to you. Partial payments with editable history.",
+    "feature_investments_title": "Investments",
+    "feature_investments_desc": "Stocks, crypto, bonds, ETFs, and more. Automatic ROI and evolution charts.",
+    "feature_reports_title": "Visual reports",
+    "feature_reports_desc": "Category charts, monthly bars, net worth line, and rankings.",
+    "feature_offline_title": "100% offline",
+    "feature_offline_desc": "No account, no cloud, no network permissions. Your data stays on your device.",
+    "feature_export_title": "Export & import",
+    "feature_export_desc": "Full backup to JSON. Take your data anywhere.",
+    "version_badge": "Version {version}"
+  },
+  "downloads": {
+    "title": "Downloads",
+    "subtitle": "Install Mis Gastos directly on your Android device.",
+    "android_title": "Android APK",
+    "android_desc": "Direct install. Google Play not required.",
+    "android_version": "Version {version}",
+    "android_build": "Build {build}",
+    "android_size": "{size} MB",
+    "android_date": "Released: {date}",
+    "android_btn": "Download APK",
+    "install_warning": "Enable \"Install from unknown sources\" in Settings > Security before installing.",
+    "docs_title": "PDF Documentation",
+    "docs_coming": "Coming soon",
+    "docs_desc": "Complete usage guide with screenshots.",
+    "changelog_title": "What's new in this version",
+    "changelog_fixed": "Fixed",
+    "changelog_added": "Added",
+    "changelog_changed": "Changed"
+  },
+  "features": {
+    "title": "Features",
+    "subtitle": "Explore everything Mis Gastos has to offer."
+  },
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Guides, tutorials, and reference to get the most out of the app."
+  },
+  "footer": {
+    "copyright": "© {year} Mis Gastos. All rights reserved.",
+    "privacy": "Privacy",
+    "contact": "Contact"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "locale": {
+    "switch_to": "Español"
+  }
+}
