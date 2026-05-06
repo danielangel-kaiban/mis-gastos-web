@@ -1,0 +1,112 @@
+---
+title: Reports
+description: Five analysis views of your finances — categories, monthly, net worth, ranking, and by person.
+slug: 06-informes
+order: 6
+icon: BarChart3
+---
+
+import { Callout } from '@/components/docs/Callout';
+
+# Reports
+
+**Reports** turn your transactions into charts. There are five tabs, each offering a different angle on your finances.
+
+To access: tap **Reports** in the bottom navigation bar.
+
+---
+
+## Global filters
+
+Before diving into the tabs, **filters** at the top apply to all views:
+
+- **Period**: quick presets (this month, this year, last 30 days, etc.) or a custom date range.
+- **Accounts**: limit analysis to one or more specific accounts.
+- **Categories**: filter by specific categories.
+- **Type**: only expenses, only income, or both.
+
+Income and expense totals for the selected period are shown below the filter panel as a quick reference.
+
+<Callout type="tip" title="Collapse filters for more space">
+  Tap the filter panel header to collapse it and give the chart more room. State is remembered while you're on the screen.
+</Callout>
+
+---
+
+## Tab 1 — Categories (pie)
+
+Shows a **pie chart** with the distribution of expenses (or income, based on the type filter) by category.
+
+What you can see:
+
+- Each slice is a category, with its percentage and amount in the base currency.
+- Tapping a slice highlights it and shows that category's detail.
+- If there are many small categories, the smallest ones are grouped into "Others".
+
+**When to use it:** to understand which categories consume most of your money in a given period.
+
+---
+
+## Tab 2 — Monthly (bars)
+
+Shows **grouped bars** comparing income and expenses month by month over the last 6 months.
+
+What you can see:
+
+- Income bar (green) vs expense bar (red) per month.
+- The month with the highest spending is visually prominent.
+- Values are in the base currency.
+
+**When to use it:** to spot trends — whether spending is rising, if a month was unusual, whether income consistently exceeds expenses.
+
+<Callout type="info" title="Fixed 6-month window">
+  This view always shows the last 6 calendar months, regardless of the period filter. It's the only tab that doesn't obey the date filter.
+</Callout>
+
+---
+
+## Tab 3 — Net worth (line)
+
+Shows the **evolution of your net worth** over time — that is, the total balance of all your accounts (in base currency) day by day.
+
+What you can see:
+
+- A timeline from the start of the filtered period to today.
+- Each point on the line is the total net worth at the close of that day.
+- If the line goes up, you're saving; if it goes down, you're spending more than you earn.
+
+**When to use it:** to see the real impact of your financial habits over time. A month where you "didn't spend much" but the line dropped might indicate investments or unrecorded transfers.
+
+---
+
+## Tab 4 — Ranking
+
+Shows the **top 5 categories** with the highest expense (or income) in the period, in a horizontal bar chart.
+
+What you can see:
+
+- The 5 most significant categories, sorted highest to lowest.
+- Absolute amount and a proportional bar to compare between them.
+
+**When to use it:** to quickly identify your biggest sources of spending or income without navigating the full pie.
+
+---
+
+## Tab 5 — By person
+
+Shows expense (or income) **grouped by the transaction note**, useful for tracking finances with specific people.
+
+<Callout type="info" title="How person grouping works">
+  This tab groups transactions by the content of the "note" field. If every time you pay something for John you write "John" in the note, the By Person tab will show a subtotal for "John". There's no explicit "person" field — it's based on the note.
+</Callout>
+
+**When to use it:** if you use the app to track shared expenses or to keep track of who paid you what.
+
+---
+
+## Tips to get more out of reports
+
+1. **Always categorize**: a transaction without a category doesn't appear in the pie or the ranking. If you have many uncategorized transactions, reports will be incomplete.
+2. **Use the account filter**: if you want to analyze only what you spend on your credit card, filter by that account.
+3. **Month-to-month comparison**: the monthly chart is the fastest way to see whether your financial situation improved or worsened.
+4. **Net worth as a compass**: check the Net Worth tab once a week. If the line consistently goes down, it's time to review spending.

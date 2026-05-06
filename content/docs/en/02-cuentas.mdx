@@ -1,0 +1,114 @@
+---
+title: Account management
+description: Create cards, wallets, bank accounts, and cash. Customize color, icon, and currency.
+slug: 02-cuentas
+order: 2
+icon: Wallet
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Account management
+
+**Accounts** are the foundation of Mis Gastos. Every payment method you use — debit card, digital wallet, bank account, cash — lives as a separate account with its own balance, color, and currency.
+
+---
+
+## Account types
+
+The app supports five types:
+
+| Type | When to use it |
+|---|---|
+| **Card** | Debit, credit, or prepaid |
+| **Wallet** | Digital (Mercado Pago, PayPal, etc.) |
+| **Bank** | Checking or savings account |
+| **Cash** | Physical money you carry |
+| **Other** | Any method not listed above |
+
+The type doesn't affect functionality — it's purely visual to identify the account at a glance.
+
+---
+
+## Creating an account
+
+<Steps>
+  <Step number={1} title="Open the Accounts section">
+    Tap **Accounts** in the bottom navigation bar.
+  </Step>
+  <Step number={2} title="Tap the + button">
+    The FAB (floating action button) in the bottom right opens the new account form.
+  </Step>
+  <Step number={3} title="Fill in the fields">
+    - **Name**: what you want to call the account (e.g., "Visa Santander").
+    - **Type**: choose from the five available types.
+    - **Currency**: the currency this account operates in.
+    - **Initial balance**: the balance the account has when you create it. Use 0 if you're starting fresh or will load history later.
+    - **Color**: any color from the palette; helps distinguish accounts at a glance.
+    - **Icon**: pick the icon that best represents the account.
+  </Step>
+  <Step number={4} title="Save">
+    Tap **Save**. The account appears instantly in the accounts list and on the home dashboard.
+  </Step>
+</Steps>
+
+<Callout type="tip" title="Initial balance">
+  If you already have previous transactions you won't be entering, use the current real balance as the initial balance. If you're going to load the full history, start at 0 and the balance will be calculated from your transactions.
+</Callout>
+
+---
+
+## How the balance is calculated
+
+The balance shown for each account is dynamic. The app calculates it as:
+
+```
+Current balance = Initial balance + Σ(income) − Σ(expenses) ± Σ(transfers)
+```
+
+You never store the balance directly — it's always derived from your transactions. This means if you correct or delete a transaction, the balance updates instantly.
+
+---
+
+## Editing an account
+
+Tap any account in the list to open it. From the detail view you can:
+
+- Change name, type, color, or icon.
+- Modify the initial balance.
+- View the transaction history filtered to that account.
+
+<Callout type="warning" title="You can't change the currency of an account with transactions">
+  If an account already has recorded transactions, changing its currency would distort all historical amounts. If you need to make the change, create a new account and transfer the balance.
+</Callout>
+
+---
+
+## Deleting an account
+
+Swipe the account to the left in the list to reveal the delete button. The app asks for confirmation.
+
+<Callout type="danger" title="Deleting removes all associated transactions">
+  When you delete an account, all its transactions **are deleted too**. If you just want to hide the account, there's currently no "archive" option — consider renaming it "Inactive" as a workaround.
+</Callout>
+
+---
+
+## Accounts in multiple currencies
+
+You can have accounts in different currencies. For example:
+
+- Account "USD Cash" → USD currency
+- Account "ARS Account" → ARS currency
+- Account "Crypto ETH" → ETH currency
+
+The **total net worth** on the home dashboard converts all balances to the base currency using the rates you've configured. See [Currencies & exchange rates](/en/docs/05-monedas).
+
+---
+
+## Limits and considerations
+
+- There's no limit on the number of accounts.
+- One account can't have two different currencies — for that, create two separate accounts.
+- The app doesn't block recording expenses that would take a balance negative — it just shows it visually below zero.

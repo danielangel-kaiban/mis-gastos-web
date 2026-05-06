@@ -1,0 +1,112 @@
+---
+title: Currencies & exchange rates
+description: Set up multiple currencies and define conversion rates for your total net worth.
+slug: 05-monedas
+order: 5
+icon: Globe
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Currencies & exchange rates
+
+Mis Gastos supports multiple simultaneous currencies. Each account has its own currency, and the app converts automatically when calculating the **total net worth** on the home dashboard.
+
+---
+
+## The base currency
+
+The **base currency** is the reference currency for all conversions. It's what you see in:
+
+- The total net worth on the home dashboard.
+- This month's income and expenses (home dashboard).
+- Reports when you mix accounts in different currencies.
+
+You can change it in **More > Settings > Base currency**.
+
+<Callout type="warning" title="Changing the base currency affects all calculations">
+  If you change the base currency after loading data, all totals and charts recalculate with the current rates. Individual amounts don't change, but aggregates do.
+</Callout>
+
+---
+
+## Adding a currency
+
+<Steps>
+  <Step number={1} title="Open Currencies">
+    From the bottom bar, tap **More > Currencies**.
+  </Step>
+  <Step number={2} title="Tap New currency">
+    The FAB opens the form.
+  </Step>
+  <Step number={3} title="Fill in the fields">
+    - **Code**: short identifier, e.g. `USD`, `EUR`, `BTC`. Can be any text — the app doesn't validate against an official list.
+    - **Symbol**: character shown before the amount, e.g. `$`, `€`, `₿`.
+    - **Name**: descriptive name, e.g. "US Dollar".
+    - **Rate**: how many units of *this currency* equal **1 unit of the base currency**.
+  </Step>
+  <Step number={4} title="Save">
+    The currency is available to assign to accounts.
+  </Step>
+</Steps>
+
+---
+
+## How the rate works
+
+The rate expresses the relationship `X units of this currency = 1 base currency unit`.
+
+The screen shows it clearly: *"1 BASE = X THIS"*. The internal formula is:
+
+```
+value_in_base = value_in_currency × (1 / rateToBase)
+```
+
+where `rateToBase` is "how many units of this currency equal 1 unit of the base".
+
+**Concrete example:**
+
+- Base currency: USD
+- Currency: ARS with `rateToBase = 1200` → 1200 ARS = 1 USD
+- You have an account with ARS 120,000
+- Net worth in USD = 120,000 / 1200 = **USD 100**
+
+<Callout type="tip" title="Update rates regularly">
+  Rates don't update themselves — they're manual. If the exchange rate changes significantly, go to **More > Currencies**, tap the currency, and update the rate. Home dashboard balances will reflect the new value immediately.
+</Callout>
+
+---
+
+## The base currency in the list
+
+In the Currencies screen, the base currency is marked with the **"Base"** chip. It can't be deleted or swiped to remove. You can edit its name and symbol.
+
+---
+
+## Deleting a currency
+
+Swipe the currency to the left.
+
+<Callout type="danger" title="You can't delete a currency that's in use">
+  If there are accounts assigned to that currency, deletion fails. You must first delete or reassign the accounts that use it.
+</Callout>
+
+---
+
+## Currencies in cross-currency transfers
+
+When making a transfer between two accounts with different currencies, the app:
+
+1. Uses the configured rate to suggest the destination amount.
+2. Lets you edit it freely if the current rate differs.
+
+The actual amount credited to the destination account is what you type in the **Destination amount** field — not an automatic derivation. This gives you full control over the exchange rate applied to each operation. See [Cross-currency transfers](/en/docs/03-transacciones#cross-currency-transfers).
+
+---
+
+## Use cases
+
+- **Simple multi-currency**: you have an ARS account and a USD account. Configure both currencies and see total net worth in ARS.
+- **Cryptocurrencies**: add BTC with code `BTC`, symbol `₿`, and the current rate. Update the rate whenever you want to see the real value.
+- **Fictional currencies**: you can create "points" or "credits" as a currency with a 1:1 rate to the base if you want to track balances in non-monetary units.

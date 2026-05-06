@@ -1,0 +1,138 @@
+---
+title: Backup & restore
+description: Export and import your database as JSON. Your data always safe.
+slug: 09-backup
+order: 9
+icon: Archive
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Backup & restore
+
+Mis Gastos stores all data in the phone's local storage. **There is no automatic sync with any server**. Manual backup is the only way to protect your information against device loss, reinstallation, or switching phones.
+
+To access: **More > Backup**.
+
+---
+
+## What the backup includes
+
+The backup file is a **JSON** containing:
+
+- All your **accounts** (name, type, currency, color, icon, initial balance).
+- All your **transactions** (type, amount, date, note, category, account).
+- All your **categories** (name, type, color, icon).
+- All your **currencies** (code, symbol, name, rate).
+- All your **debts** and their payments.
+- All your **investments** and their movements.
+- Your **settings** (base currency, preferences).
+
+---
+
+## Exporting a backup
+
+<Steps>
+  <Step number={1} title="Open Backup">
+    From **More > Backup**, find the **Export** section.
+  </Step>
+  <Step number={2} title="Tap Export and share">
+    The app generates the JSON file and opens Android's system **share sheet**.
+  </Step>
+  <Step number={3} title="Save to a safe location">
+    Use the share sheet to:
+    - Save to Google Drive, Dropbox, or any cloud storage.
+    - Email it or send via WhatsApp to yourself.
+    - Save to another folder on your phone.
+  </Step>
+</Steps>
+
+<Callout type="tip" title="Back up regularly">
+  A good practice is to export once a week. The file weighs just a few kilobytes even with thousands of transactions — storage isn't an issue.
+</Callout>
+
+---
+
+## Import and replace
+
+This option **deletes all current data** and replaces it with the backup file's data.
+
+<Steps>
+  <Step number={1} title="Tap Import and replace">
+    In the **Import** section of the Backup screen.
+  </Step>
+  <Step number={2} title="Confirm the warning">
+    The app warns you that current data will be deleted. Only confirm if you're sure.
+  </Step>
+  <Step number={3} title="Select the JSON file">
+    Android's file picker opens. Navigate to the backup you saved.
+  </Step>
+  <Step number={4} title="Wait for completion">
+    Import is instant for most backups. When done, the app shows a confirmation message.
+  </Step>
+</Steps>
+
+<Callout type="danger" title="This deletes EVERYTHING">
+  Import and replace permanently deletes all device data before loading the backup's data. There's no way to undo this operation.
+</Callout>
+
+---
+
+## Import and merge
+
+This option **keeps existing data** and adds the backup's data. If there are ID conflicts (same records), the backup takes precedence (overwrites).
+
+**When to use it:**
+
+- You have data on two phones and want to combine them.
+- You're restoring from an older backup but want to keep newer data you entered since then.
+
+<Callout type="warning" title="Watch out for duplicates">
+  The merge can create duplicates if the same transaction exists in both datasets with different IDs. Review the history after merging.
+</Callout>
+
+---
+
+## Migrating to a new phone
+
+The standard process for switching devices:
+
+1. On the old phone: **More > Backup > Export and share** → save to the cloud.
+2. On the new phone: install Mis Gastos (APK).
+3. On the new phone: **More > Backup > Import and replace** → select the file from the cloud.
+
+---
+
+## JSON file format
+
+The backup is a flat JSON with the following keys in the root object:
+
+```json
+{
+  "accounts": [...],
+  "transactions": [...],
+  "categories": [...],
+  "currencies": [...],
+  "debts": [...],
+  "debtPayments": [...],
+  "investments": [...],
+  "invMovements": [...],
+  "settings": { "baseCurrencyCode": "USD" }
+}
+```
+
+The format is human-readable — you can open it in any text editor to audit your data.
+
+---
+
+## Backup FAQ
+
+**Can I manually edit the JSON and reimport it?**
+Yes, as long as you respect the structure. If you modify a field to an invalid value, the import may fail.
+
+**What happens if I import a backup from an older app version?**
+The app handles backward compatibility for fields added in newer versions: missing fields take default values.
+
+**Does the backup include the investment price history?**
+Yes — "Update value" movements are exported as `invMovements` and the history is reconstructed on import.

@@ -1,0 +1,135 @@
+---
+title: Investments & portfolio
+description: Track stocks, crypto, bonds, and more. Automatic ROI and portfolio evolution.
+slug: 08-inversiones
+order: 8
+icon: TrendingUp
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Investments & portfolio
+
+The **Investments** section lets you track financial assets outside of regular accounts: stocks, cryptocurrencies, bonds, fixed deposits, ETFs, funds, and more.
+
+To access: **More > Investments**.
+
+---
+
+## Supported investment types
+
+| Type | Examples |
+|---|---|
+| **Stocks** | Apple, Google, local equities |
+| **Cryptocurrencies** | Bitcoin, Ethereum, USDT |
+| **Bonds** | Government bonds, corporate bonds |
+| **ETF** | SPY, QQQ, sector ETFs |
+| **Fund** | Mutual funds, hedge funds |
+| **Real estate** | Properties, land |
+| **Fixed deposit** | Savings deposits, time deposits |
+| **Other** | Any unlisted asset |
+
+---
+
+## Creating an investment
+
+<Steps>
+  <Step number={1} title="Open Investments">
+    From **More > Investments**, tap the FAB.
+  </Step>
+  <Step number={2} title="Fill in the base data">
+    - **Name**: identifier for the investment (e.g., "BTC", "AAPL", "NYC Apartment").
+    - **Type**: one of the eight available types.
+    - **Currency**: the currency it's denominated in.
+    - **Current value**: the current market value. This field is updated manually whenever you want to reflect a price change.
+    - **Color and icon**: for visual identification.
+    - **Note** (optional).
+  </Step>
+  <Step number={3} title="Save">
+    The investment appears in the portfolio list.
+  </Step>
+</Steps>
+
+---
+
+## Investment movements
+
+Each investment can have four types of movements:
+
+| Type | What it does |
+|---|---|
+| **Deposit** | You bought or deposited money into this investment. |
+| **Withdrawal** | You sold or withdrew money from this investment. |
+| **Dividend / Return** | You received a dividend or interest payment. |
+| **Update value** | You update the current market value with no money movement. |
+
+To record a movement, open the investment and tap **+ Movement**.
+
+<Callout type="info" title="Deposits and withdrawals can link to an account">
+  When recording a deposit or withdrawal, you can select an app account. If you do, a transaction is automatically created in that account (expense for a deposit, income for a withdrawal) so the account balance also stays updated.
+</Callout>
+
+---
+
+## ROI calculation
+
+Return on investment (ROI) is calculated automatically from movements:
+
+```
+Gain = Current value + Total withdrawn + Total dividends − Total deposited
+ROI% = (Gain / Total deposited) × 100
+```
+
+**Example:**
+
+- You deposited $1,000 into AAPL stock.
+- You received $20 in dividends.
+- Current value of the shares is $1,150.
+- ROI = (1,150 + 20 − 1,000) / 1,000 × 100 = **17%**
+
+<Callout type="tip" title="ROI is based on total deposited, not net invested">
+  If you deposited $1,000 and later withdrew $200, the base is still $1,000 (total deposited), not $800 (net invested). This may differ from other ROI calculators.
+</Callout>
+
+---
+
+## Updating the market value
+
+Investments don't update themselves — the app has no connection to price services. To update the value:
+
+1. Open the investment.
+2. Tap **+ Movement**.
+3. Choose type **Update value**.
+4. Enter the new total market value.
+
+This movement doesn't create any account transaction — it just updates the "current value" field of the investment.
+
+---
+
+## Portfolio view
+
+The main Investments screen shows:
+
+- List of all investments with current value and ROI.
+- Portfolio total in base currency (summing all investments converted).
+
+The portfolio total is also shown on the home dashboard as part of net worth if you have investments loaded.
+
+---
+
+## Deleting an investment
+
+Tap the investment and find the delete option.
+
+<Callout type="danger" title="Deleting removes all investment movements">
+  If the investment had movements linked to accounts, the account transactions **are not deleted** — they remain as independent records. Only the investment and its internal history are deleted.
+</Callout>
+
+---
+
+## Limitations
+
+- No real-time prices — everything is manual.
+- Current value is a single number (no automatic price history). The "Update value" movement history serves as a manual price record.
+- No support for multiple positions (lots at different prices) — each investment is a single position.

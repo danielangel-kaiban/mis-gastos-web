@@ -1,0 +1,116 @@
+---
+title: Custom categories
+description: Organize your movements with your own categories, colors, and icons.
+slug: 04-categorias
+order: 4
+icon: Tag
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Custom categories
+
+**Categories** let you classify your transactions for later analysis. They're fully customizable: you define the name, color, and icon of each one.
+
+---
+
+## Expense vs income categories
+
+Each category belongs to one type: **expense** or **income**. There's no "transfer" category — transfers between accounts aren't categorized.
+
+This means:
+
+- Expense-type categories only appear when recording an expense.
+- Income-type categories only appear when recording income.
+- In reports, you can filter by type and see the corresponding categories.
+
+---
+
+## Creating a category
+
+<Steps>
+  <Step number={1} title="Open Categories">
+    From the bottom bar, tap **More**, then **Categories**.
+  </Step>
+  <Step number={2} title="Tap the + button">
+    The FAB opens the new category form.
+  </Step>
+  <Step number={3} title="Fill in the form">
+    - **Name**: e.g., "Groceries", "Restaurants", "Salary".
+    - **Type**: expense or income.
+    - **Icon**: choose from the available icon palette (based on Material Icons).
+    - **Color**: any color from the system palette.
+  </Step>
+  <Step number={4} title="Save">
+    The category is immediately available when recording transactions.
+  </Step>
+</Steps>
+
+<Callout type="tip" title="No default categories">
+  The app doesn't come with pre-loaded categories — you start from scratch. This is intentional: everyone has different spending habits. Create the ones you'll actually use so that reports are meaningful.
+</Callout>
+
+---
+
+## Common category ideas
+
+**Expenses:**
+
+- Housing (rent, HOA, utilities)
+- Groceries (supermarket, farmers market)
+- Restaurants & cafés
+- Transportation (gas, public transit, taxis)
+- Health (pharmacy, doctor, insurance)
+- Entertainment (streaming, movies, outings)
+- Education
+- Clothing
+- Technology
+
+**Income:**
+
+- Salary
+- Freelance / consulting
+- Rental income
+- Dividends / returns
+- Item sales
+
+---
+
+## Editing a category
+
+Tap any category in the list. The edit form lets you change name, type, color, and icon.
+
+<Callout type="warning" title="Changing the type may hide categories in the form">
+  If you change a category from "expense" to "income", all expense transactions that used it still exist with that category — but you won't see it available when creating new expenses. This is an edge case; if you need to reorganize, it's better to create new categories.
+</Callout>
+
+---
+
+## Deleting a category
+
+Swipe the category to the left to delete it.
+
+<Callout type="danger" title="Transactions are not deleted">
+  When you delete a category, the transactions that had it assigned **are not deleted** — they just lose their category. You'll still see them in the history but they won't appear in the category breakdown in reports.
+</Callout>
+
+---
+
+## How categories are used in reports
+
+Categories are the foundation of financial analysis in reports:
+
+- **Pie chart**: distribution of expenses (or income) by category in the selected period.
+- **Ranking**: top 5 most-spent categories.
+- **Filter**: you can view the history of a single category from the Transactions screen.
+
+The more consistently you categorize your transactions, the more useful reports become. A transaction without a category doesn't appear in charts.
+
+---
+
+## Limits
+
+- No limit on the number of categories.
+- No subcategories — the hierarchy is flat.
+- Names don't need to be unique per type — you can have "Miscellaneous" in expenses and "Miscellaneous" in income; they're separate entities.

@@ -1,0 +1,138 @@
+---
+title: Transactions
+description: Log income, expenses, and transfers. Cross-currency handling included.
+slug: 03-transacciones
+order: 3
+icon: ArrowLeftRight
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Transactions
+
+A **transaction** is any movement of money. Mis Gastos handles three types:
+
+| Type | What it does |
+|---|---|
+| **Expense** | Reduces the balance of an account. Requires a category. |
+| **Income** | Increases the balance of an account. Requires a category. |
+| **Transfer** | Moves money from one account to another. No category. |
+
+---
+
+## Recording a transaction
+
+<Steps>
+  <Step number={1} title="Open the form">
+    Tap the **+** icon in the bottom bar, or from the Transactions screen tap the FAB. You can also reach it from the home dashboard.
+  </Step>
+  <Step number={2} title="Choose the type">
+    The three tabs at the top of the form switch between Expense, Income, and Transfer. The form adapts to the selected type.
+  </Step>
+  <Step number={3} title="Fill in the fields">
+    - **Amount**: a positive number in the origin account's currency.
+    - **Account**: where the money comes from (or goes to).
+    - **Category**: required for expenses and income; doesn't apply to transfers.
+    - **Date**: defaults to today; you can change it to load historical entries.
+    - **Note**: optional free-text field for context.
+  </Step>
+  <Step number={4} title="Save">
+    Tap **Save**. The account balance updates instantly.
+  </Step>
+</Steps>
+
+---
+
+## Transaction types in detail
+
+### Expense
+
+Records a money outflow. The amount is subtracted from the chosen account's balance.
+
+**Specific fields:** origin account, expense-type category.
+
+**Example:** You pay $15 at a coffee shop with your debit card → create an expense of $15 from account "Debit Visa" in category "Restaurants".
+
+### Income
+
+Records a money inflow. The amount is added to the chosen account's balance.
+
+**Specific fields:** destination account, income-type category.
+
+**Example:** Salary of $3,000 lands in your bank account → create an income of $3,000 in account "Bank Account" in category "Salary".
+
+### Transfer between accounts
+
+Moves money from one account to another **within the app**. No category — transfers don't appear in income/expense reports.
+
+**Specific fields:** origin account, destination account.
+
+---
+
+## Cross-currency transfers
+
+When the origin and destination accounts have **different currencies**, an additional field appears: **Destination amount**.
+
+How it works:
+
+1. You enter the amount in the origin account's currency (e.g., 100 USD).
+2. The app pre-fills the destination amount automatically using the configured rate (e.g., if 1 USD = 1,000 ARS, it suggests 100,000 ARS).
+3. You can freely edit the destination amount if the actual exchange rate that day differs.
+
+<Callout type="info" title="The rate is a suggestion, not a rule">
+  The destination amount field is always editable. If the real exchange rate that day was different from what you have configured, just overwrite the value. The app doesn't force you to use the saved rate.
+</Callout>
+
+**Technical note:** in the data model, this value is stored in `destinationAmount`. When it's `null` (same-currency transfer or legacy data), the app uses `amount` as the effective value for the destination account.
+
+---
+
+## History and filters
+
+From **Transactions** (bottom bar) you see the full history, grouped by month with totals.
+
+Available filters:
+
+- **Date**: custom range or presets (today, this week, this month, etc.).
+- **Account**: filter by one or multiple accounts.
+- **Category**: filter by a specific category.
+- **Type**: only expenses, only income, only transfers.
+
+You can also **search by text** in the notes field.
+
+---
+
+## Editing a transaction
+
+Tap any entry in the history to open it in the edit form. All fields are editable.
+
+<Callout type="tip" title="Retroactive corrections">
+  If you entered the wrong amount or date, just edit the transaction. The balance recalculates automatically with the corrected value.
+</Callout>
+
+## Deleting a transaction
+
+Swipe the transaction to the left in the history, or use the "Delete" option inside the edit form.
+
+<Callout type="warning" title="Deletion is permanent">
+  There's no recycle bin. If you delete a transaction by mistake, the only way to recover it is from a previous backup.
+</Callout>
+
+---
+
+## Monthly grouping
+
+The history shows transactions grouped by month. Each group includes:
+
+- The month and year as a header.
+- Income and expense totals for that group.
+- The list of transactions ordered by date, newest first.
+
+---
+
+## Known limitations
+
+- A transaction can only belong to one origin account. There's no splitting across accounts.
+- There are no automatic recurring transactions — every entry is manual.
+- The note field is free text with no length limit, but doesn't support file attachments or images.

@@ -1,0 +1,110 @@
+---
+title: OTA updates
+description: Update the app directly from itself, no Play Store required.
+slug: 10-actualizaciones
+order: 10
+icon: RefreshCw
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# OTA updates
+
+Mis Gastos includes an **Over-The-Air (OTA)** update system: you can check for a new version and download it without leaving the app and without going through any store.
+
+To access: **More > Updates**.
+
+---
+
+## How it works
+
+The OTA system uses an endpoint URL pointing to an `update.json` file published on a server. The app queries that endpoint, compares the available version with the installed one, and if there's a newer version, offers to download it.
+
+The `update.json` file has this structure:
+
+```json
+{
+  "version": "1.2.0",
+  "build": 12,
+  "apkUrl": "https://example.com/mis-gastos-1.2.0.apk",
+  "releaseNotes": "Bug fixes and performance improvements.",
+  "size": 8.4
+}
+```
+
+---
+
+## Checking for updates
+
+<Steps>
+  <Step number={1} title="Configure the endpoint (first time)">
+    If it's your first time using this feature, you need to enter the endpoint URL. In the Updates screen, find the text field for the URL. Enter the URL corresponding to your app's distribution source (usually the same source you downloaded the APK from).
+  </Step>
+  <Step number={2} title="Tap Check for updates">
+    The app makes an HTTP request to the endpoint and retrieves the `update.json`.
+  </Step>
+  <Step number={3} title="Review the result">
+    - If the remote version is **newer** than the installed one, new version info appears with release notes and file size.
+    - If you're on the **latest version**, the app confirms it.
+    - If there's an **error** (endpoint unavailable, no connection), the error message is shown.
+  </Step>
+</Steps>
+
+---
+
+## Downloading and installing the update
+
+<Steps>
+  <Step number={1} title="Tap Download">
+    The app downloads the APK in the background. A progress bar shows the progress with bytes received vs total.
+  </Step>
+  <Step number={2} title="Wait for completion">
+    Download time depends on your connection and the APK size.
+  </Step>
+  <Step number={3} title="Install">
+    Once downloaded, the **Install** button appears. Tapping it opens Android's native installer with the downloaded APK.
+  </Step>
+  <Step number={4} title="Confirm installation">
+    Android's installer shows the APK details and asks for confirmation. Tap **Update** (or **Install**).
+  </Step>
+</Steps>
+
+<Callout type="info" title="Data is not lost when updating">
+  Updates installed over the same app preserve all your data. The Hive storage system persists across versions. Still, **back up before updating** as a good practice.
+</Callout>
+
+---
+
+## Installed version
+
+At the top of the Updates screen you always see:
+
+- **Installed version**: semantic version number (e.g., `1.1.0`).
+- **Build**: internal build number.
+
+---
+
+## Custom endpoint
+
+The endpoint URL is saved locally and persists between sessions. You can change it at any time from the text field. If you distribute the app within your organization or team, you configure your own `update.json` on your server and everyone updates from there.
+
+<Callout type="tip" title="Official distribution endpoint">
+  If you downloaded Mis Gastos from the official page, the endpoint URL is the same one shown on the downloads page. Available at [Downloads](/en/descargas).
+</Callout>
+
+---
+
+## FAQ
+
+**What happens if I close the app while downloading?**
+The download is cancelled. You have to restart it.
+
+**Does the app check for updates automatically on launch?**
+No. Checking is always manual — the app never makes network requests without you initiating it.
+
+**Can I use any URL as the endpoint?**
+Yes, as long as it responds with a valid JSON in the expected format. You can host `update.json` on GitHub Pages, an S3 bucket, a VPS, or any static hosting.
+
+**Does the download verify APK integrity?**
+There's currently no checksum verification. If you need to validate file integrity, do it manually by comparing the SHA256 hash of the downloaded APK with the one published on the distribution page.

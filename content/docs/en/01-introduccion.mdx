@@ -1,0 +1,118 @@
+---
+title: Introduction & getting started
+description: Download the app, set up your first accounts, and understand how Mis Gastos works.
+slug: 01-introduccion
+order: 1
+icon: BookOpen
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Introduction & getting started
+
+Mis Gastos is a **100% offline** personal finance app for Android. No account required, no data uploaded to any server, and it works without an internet connection.
+
+What you can do with it:
+
+- Record income, expenses, and transfers between accounts
+- Manage multiple accounts in different currencies
+- View visual reports of your finances
+- Track debts and investments
+- Back up all your data at any time
+
+---
+
+## Download and installation
+
+Mis Gastos is distributed as a direct APK — it's not available in any app store.
+
+<Steps>
+  <Step number={1} title="Download the APK">
+    Go to the [downloads page](/en/descargas) and tap **Download APK**. The file will be saved to your downloads folder.
+  </Step>
+  <Step number={2} title="Enable installation from unknown sources">
+    Android blocks external APK installation by default. Go to **Settings > Security** (or **Settings > Apps > Install unknown apps**) and enable the permission for your browser or file manager.
+  </Step>
+  <Step number={3} title="Install the APK">
+    Open the downloaded file and follow Android's installation prompts. The process takes a few seconds.
+  </Step>
+  <Step number={4} title="Open the app">
+    Find **Mis Gastos** in your app drawer and open it. On the first launch you'll land directly on the home screen — no registration or login required.
+  </Step>
+</Steps>
+
+<Callout type="warning" title="Installation permission">
+  If Android shows "App blocked by Play Protect", tap **Install anyway**. The app contains no malicious code — the warning appears because it doesn't come from the Play Store.
+</Callout>
+
+---
+
+## The home screen
+
+When you open the app, the first thing you see is the **home dashboard**. It has three zones:
+
+1. **Total net worth** — combined balance of all your accounts converted to the base currency.
+2. **This month's income and expenses** — current month totals, also in the base currency.
+3. **Recent transactions** — the last 8 records with type, account, and amount.
+
+From the bottom bar you can navigate to the five main sections:
+
+| Section | What it does |
+|---|---|
+| Home | Summary dashboard and recent transactions |
+| Transactions | Full history with filters |
+| Accounts | Account management and balances |
+| Reports | Charts and analysis |
+| More | Debts, investments, currencies, backup, settings |
+
+---
+
+## Recommended initial setup
+
+Before recording your first transaction, it's worth doing three things:
+
+### 1. Choose your base currency
+
+The base currency is what the app uses to convert balances from different-currency accounts and display the total net worth. You can change it in **More > Settings**.
+
+<Callout type="tip" title="Which base currency to choose?">
+  Pick the currency you think in — usually the one of your country of residence. Once configured, all conversions go to that currency.
+</Callout>
+
+### 2. Add your currencies
+
+If you operate with more than one currency (e.g., pesos and dollars), go to **More > Currencies** and add each one with its exchange rate. See [Currencies & exchange rates](/en/docs/05-monedas) for details.
+
+### 3. Create your first accounts
+
+Every wallet, card, or bank account is an **Account** in the app. Go to **Accounts > +** to add the first one. You can give it a name, assign a color, an icon, and the currency it operates in. See [Account management](/en/docs/02-cuentas) for the full process.
+
+---
+
+## How data flows
+
+Mis Gastos has no backend. Everything lives in your device's local storage (Hive database). The flow is:
+
+```
+Your phone → Hive (local) → screen
+```
+
+Nothing leaves the device except when you choose to export a backup. This means:
+
+- If you uninstall the app without a backup, **all data is lost**.
+- If you switch phones, **you need to export and import** the JSON file.
+- Two phones don't sync automatically — use the backup to transfer data.
+
+<Callout type="info" title="Back up before uninstalling">
+  Always export a backup from **More > Backup** before uninstalling the app or resetting your phone. The process takes less than five seconds.
+</Callout>
+
+---
+
+## Next steps
+
+With the app installed and the base currency configured, the natural next step is to add your accounts:
+
+- [Account management →](/en/docs/02-cuentas)
+- [Log your first transaction →](/en/docs/03-transacciones)

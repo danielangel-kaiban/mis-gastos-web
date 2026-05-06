@@ -1,0 +1,136 @@
+---
+title: Debts & loans
+description: Record what you owe and what's owed to you. Partial payments and full tracking.
+slug: 07-deudas
+order: 7
+icon: UserMinus
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Debts & loans
+
+The **Debts** section lets you track money you lent or borrowed, with partial payment tracking and an editable history.
+
+To access: **More > Debts**.
+
+---
+
+## Debt types
+
+Mis Gastos distinguishes two directions:
+
+| Type | Meaning |
+|---|---|
+| **They owe me** (`theyOweMe`) | You lent money; someone owes it to you. |
+| **I owe** (`iOwe`) | Someone lent you money; you owe it to them. |
+
+---
+
+## Screen tabs
+
+The screen has four tabs:
+
+1. **By person**: groups all active debts by counterparty (person or entity name).
+2. **They owe me**: list of active "They owe me" debts.
+3. **I owe**: list of active "I owe" debts.
+4. **Paid**: fully settled debts.
+
+---
+
+## Creating a debt
+
+<Steps>
+  <Step number={1} title="Tap the + button">
+    The FAB on the Debts screen opens the form.
+  </Step>
+  <Step number={2} title="Fill in the form">
+    - **Counterparty**: name of the person or entity (e.g., "John", "Bank of America").
+    - **Type**: whether you owe or are owed.
+    - **Currency**: the currency the debt is denominated in.
+    - **Original amount**: the total amount of the debt.
+    - **Due date** (optional): if the debt has a deadline.
+    - **Note** (optional): additional context.
+  </Step>
+  <Step number={3} title="Save">
+    The debt appears in the corresponding list with the outstanding amount equal to the original amount.
+  </Step>
+</Steps>
+
+---
+
+## Recording a partial payment
+
+<Steps>
+  <Step number={1} title="Open the debt">
+    Tap the debt in the list to see its detail.
+  </Step>
+  <Step number={2} title="Tap Record payment">
+    The payment button opens the partial payment form.
+  </Step>
+  <Step number={3} title="Fill in the payment">
+    - **Amount**: how much was paid in this installment. Can be any value up to the outstanding amount.
+    - **Date**: the payment date.
+    - **Account** (optional): if you want to link the payment to an app account so it also records the transaction.
+    - **Note** (optional).
+  </Step>
+  <Step number={4} title="Save">
+    The outstanding amount on the debt decreases by the payment amount. If the total paid reaches the original amount, the debt automatically moves to **Paid**.
+  </Step>
+</Steps>
+
+<Callout type="tip" title="Payments linked to an account">
+  If you select an account when recording the payment, the app automatically creates a transaction in that account (income or expense depending on the debt direction). This is the cleanest way to keep the account balance in sync with the payment.
+</Callout>
+
+---
+
+## Summary panel
+
+At the top of the Debts screen there's a summary strip showing:
+
+- **Total owed to you**: sum of all active "They owe me" debts, in base currency.
+- **Total you owe**: sum of all active "I owe" debts, in base currency.
+
+Debts in currencies other than the base are converted using the configured rates.
+
+---
+
+## Overdue debts
+
+If you configured a due date and the debt is still active after that date, it appears marked as **overdue** in the list.
+
+<Callout type="warning" title="It's just a visual indicator">
+  The "overdue" mark is informational — the app doesn't automatically block or charge anything. It's a visual reminder that the deadline has passed.
+</Callout>
+
+---
+
+## Editing or deleting a debt
+
+Tap the debt to see editing options. You can change all fields from the original form.
+
+Deleting a debt also deletes its payment history. Payments that generated account transactions **are not deleted** — they remain as independent records.
+
+---
+
+## Payment history
+
+The detail view of each debt shows the complete list of recorded payments: date, amount, and note. You can edit or delete each payment individually.
+
+<Callout type="info" title="Editing a payment recalculates the outstanding amount">
+  If you modify the amount of a payment, the debt's outstanding amount recalculates automatically. Same if you delete a payment.
+</Callout>
+
+---
+
+## Complete example
+
+Scenario: you lent $500 to Maria on January 1st. She made two partial payments.
+
+1. Create a "They owe me" debt, counterparty "Maria", original amount $500.
+2. On January 15th, Maria pays $200 → record a payment of $200. Outstanding: $300.
+3. On February 1st, Maria pays the rest → record a payment of $300. Outstanding: $0. The debt moves to "Paid".
+
+In the "By person" tab you'll see both debts grouped under "Maria" while they're active.
