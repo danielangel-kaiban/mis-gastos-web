@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Smartphone, FileText, Download } from 'lucide-react';
@@ -34,8 +33,15 @@ const APK_SIZE = '24.9';
 const APK_DATE = '2026-04-15';
 const APK_URL = '/downloads/mis_gastos-1.1.1+3-release.apk';
 
-export default function DescargasPage() {
-  const t = useTranslations('downloads');
+const PDF_ES_URL = '/downloads/mis-gastos-docs-es.pdf';
+const PDF_EN_URL = '/downloads/mis-gastos-docs-en.pdf';
+const PDF_ES_SIZE = '0.6';
+const PDF_EN_SIZE = '0.6';
+
+export default async function DescargasPage({ params }: Props) {
+  const { locale } = await params;
+  const t = await getTranslations('downloads');
+  const isEs = locale === 'es';
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-16">
@@ -45,8 +51,8 @@ export default function DescargasPage() {
         <p className="text-muted-foreground">{t('subtitle')}</p>
       </div>
 
-      {/* Grid */}
-      <div className="grid gap-6 sm:grid-cols-2">
+      {/* Top row: APK + primary PDF */}
+      <div className="grid gap-6 sm:grid-cols-2 mb-6">
         {/* Android APK card */}
         <div className="rounded-xl border border-border bg-card p-6 flex flex-col gap-4">
           <div className="flex items-center gap-3">
@@ -79,30 +85,74 @@ export default function DescargasPage() {
           </p>
         </div>
 
-        {/* Docs PDF card — coming soon */}
-        <div className="rounded-xl border border-border bg-card p-6 flex flex-col gap-4 opacity-60">
+        {/* Primary PDF card (locale-matching language first) */}
+        <div className="rounded-xl border border-border bg-card p-6 flex flex-col gap-4">
+          <div className="flex items-center gap-3">
+            <div className="rounded-lg bg-primary/10 p-2.5">
+              <FileText className="h-5 w-5 text-primary" />
+            </div>
+            <h2 className="font-semibold text-card-foreground">
+              {isEs ? t('docs_es_title') : t('docs_en_title')}
+            </h2>
+          </div>
+
+          <p className="text-sm text-muted-foreground">
+            {isEs ? t('docs_es_desc') : t('docs_en_desc')}
+          </p>
+
+          <dl className="grid grid-cols-1 gap-y-1 text-sm">
+            <dd className="text-muted-foreground">
+              {t('docs_size', { size: isEs ? PDF_ES_SIZE : PDF_EN_SIZE })}
+            </dd>
+          </dl>
+
+          <a
+            href={isEs ? PDF_ES_URL : PDF_EN_URL}
+            download
+            className="mt-auto inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+          >
+            <Download className="h-4 w-4" />
+            {isEs ? t('docs_btn_es') : t('docs_btn_en')}
+          </a>
+        </div>
+      </div>
+
+      {/* Secondary PDF card (other language) */}
+      <div className="grid gap-6 sm:grid-cols-2 mb-12">
+        <div className="rounded-xl border border-border bg-card p-6 flex flex-col gap-4 opacity-90">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-muted p-2.5">
               <FileText className="h-5 w-5 text-muted-foreground" />
             </div>
-            <h2 className="font-semibold text-card-foreground">{t('docs_title')}</h2>
+            <h2 className="font-semibold text-card-foreground">
+              {isEs ? t('docs_en_title') : t('docs_es_title')}
+            </h2>
           </div>
 
-          <p className="text-sm text-muted-foreground">{t('docs_desc')}</p>
+          <p className="text-sm text-muted-foreground">
+            {isEs ? t('docs_en_desc') : t('docs_es_desc')}
+          </p>
 
-          <div className="mt-auto">
-            <button
-              disabled
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-muted px-4 py-2.5 text-sm font-semibold text-muted-foreground cursor-not-allowed w-full"
-            >
-              {t('docs_coming')}
-            </button>
-          </div>
+          <dl className="grid grid-cols-1 gap-y-1 text-sm">
+            <dd className="text-muted-foreground">
+              {t('docs_size', { size: isEs ? PDF_EN_SIZE : PDF_ES_SIZE })}
+            </dd>
+          </dl>
+
+          <a
+            href={isEs ? PDF_EN_URL : PDF_ES_URL}
+            download
+            className="mt-auto inline-flex items-center justify-center gap-2 rounded-lg bg-secondary px-4 py-2.5 text-sm font-semibold text-secondary-foreground hover:bg-secondary/80 transition-colors"
+          >
+            <Download className="h-4 w-4" />
+            {isEs ? t('docs_btn_en') : t('docs_btn_es')}
+          </a>
         </div>
+        <div /> {/* spacer */}
       </div>
 
       {/* Changelog */}
-      <div className="mt-12 rounded-xl border border-border bg-card p-6">
+      <div className="rounded-xl border border-border bg-card p-6">
         <h2 className="font-semibold mb-4 text-card-foreground">{t('changelog_title')}</h2>
 
         <div className="space-y-4 text-sm">
