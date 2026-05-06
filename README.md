@@ -7,8 +7,8 @@ Landing page and APK distribution site for Mis Gastos — a personal finance app
 - **Next.js 16** (App Router, webpack)
 - **Tailwind CSS v4** with shadcn primitives
 - **next-intl v4** — bilingual ES / EN, `localePrefix: 'always'`
-- **Framer Motion** for animations (M2+)
 - **lucide-react** for icons
+- CSS keyframe animations (replaced Framer Motion in M5 for performance)
 
 ## Development
 
@@ -123,3 +123,8 @@ PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser npm run docs:pdf
 - Regeneration is manual and local — commit the updated PDFs to the repo
 
 > **Note:** Vercel builds can run Puppeteer with `@sparticuz/chromium`, but this requires additional setup. For now, regeneration is done locally before each deploy.
+
+## TODO — M6
+
+- **ADB screenshots:** Replace SVG mockups (`public/mockups/home.svg`, `transactions.svg`, `reports.svg`) with real screenshots from the Android app captured via `adb exec-out screencap -p`. Requires an Android emulator or device connected via ADB. No emulator was available during M5.
+- **CI PDF generation:** Set up `@sparticuz/chromium` in Vercel build hook to auto-regenerate PDFs on each deploy instead of committing them manually.
