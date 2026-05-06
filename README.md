@@ -78,3 +78,48 @@ Or push to GitHub and connect the repo from the [Vercel dashboard](https://verce
 - APK lives at `/downloads/mis_gastos-1.1.1+3-release.apk`
 - Update manifest at `/update.json` — consumed by the Flutter app's OTA updater
 - To release a new version: replace the APK in `public/downloads/`, update `public/update.json`, redeploy
+
+## Generating documentation PDFs
+
+The documentation PDFs are pre-generated and committed to the repo under `public/downloads/`:
+
+- `mis-gastos-docs-es.pdf` — Spanish compendium (11 chapters)
+- `mis-gastos-docs-en.pdf` — English compendium (11 chapters)
+
+### Requirements
+
+- Node.js 18+ with Puppeteer (installed as a devDependency — includes headless Chromium)
+- A built or running Next.js server
+
+### How to regenerate
+
+```bash
+# 1. Build the project (required before each regeneration)
+npm run build
+
+# 2. Generate both PDFs
+npm run docs:pdf
+```
+
+The script will:
+1. Detect if a Next.js server is already running on port 3002; if not, start `next start` on that port.
+2. Launch Puppeteer, capture each of the 11 doc pages per locale.
+3. Assemble a compendium HTML with cover page and TOC.
+4. Render to A4 PDF with header/footer.
+5. Save to `public/downloads/` and shut down any server it started.
+
+### Using a system Chrome/Chromium
+
+If Puppeteer can't download its bundled Chromium (e.g., restricted network), point to the system browser:
+
+```bash
+PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser npm run docs:pdf
+```
+
+### When to regenerate
+
+- Before each new release (after updating doc content or app version)
+- After adding a new documentation section
+- Regeneration is manual and local — commit the updated PDFs to the repo
+
+> **Note:** Vercel builds can run Puppeteer with `@sparticuz/chromium`, but this requires additional setup. For now, regeneration is done locally before each deploy.
