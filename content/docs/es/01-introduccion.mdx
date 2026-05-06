@@ -1,0 +1,118 @@
+---
+title: Introducción y primeros pasos
+description: Descargá la app, configurá tus primeras cuentas y entendé cómo funciona Mis Gastos.
+slug: 01-introduccion
+order: 1
+icon: BookOpen
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Introducción y primeros pasos
+
+Mis Gastos es una app de finanzas personales **100% offline** para Android. No requiere cuenta, no sube datos a ningún servidor y funciona sin conexión a internet.
+
+Lo que podés hacer con ella:
+
+- Registrar ingresos, gastos y transferencias entre cuentas
+- Manejar múltiples cuentas en distintas monedas
+- Ver informes visuales de tus finanzas
+- Llevar el control de deudas e inversiones
+- Hacer backup completo de tus datos en cualquier momento
+
+---
+
+## Descarga e instalación
+
+Mis Gastos se distribuye como APK directo — no pasa por ninguna tienda.
+
+<Steps>
+  <Step number={1} title="Descargá el APK">
+    Entrá a la [página de descargas](/es/descargas) y tocá el botón **Descargar APK**. El archivo se guardará en tu carpeta de descargas.
+  </Step>
+  <Step number={2} title="Habilitá instalación desde fuentes desconocidas">
+    Android bloquea la instalación de APKs externos por defecto. Andá a **Ajustes > Seguridad** (o **Ajustes > Aplicaciones > Instalar aplicaciones desconocidas**) y habilitá el permiso para tu navegador o gestor de archivos.
+  </Step>
+  <Step number={3} title="Instalá el APK">
+    Abrí el archivo descargado y seguí las instrucciones del instalador de Android. El proceso tarda unos segundos.
+  </Step>
+  <Step number={4} title="Abrí la app">
+    Buscá **Mis Gastos** en tu cajón de aplicaciones y ábrila. En el primer inicio te llevará directamente a la pantalla de inicio — no hay registro ni login.
+  </Step>
+</Steps>
+
+<Callout type="warning" title="Permiso de instalación">
+  Si tu Android muestra "App bloqueada por Play Protect", tocá **Instalar de todas formas**. La app no contiene código malicioso — la advertencia aparece porque no proviene de Play Store.
+</Callout>
+
+---
+
+## La pantalla de inicio
+
+Al abrir la app, lo primero que ves es el **panel de inicio**. Tiene tres zonas:
+
+1. **Patrimonio total** — saldo combinado de todas tus cuentas convertido a la moneda base.
+2. **Ingresos y gastos del mes** — los totales del mes en curso, también en moneda base.
+3. **Movimientos recientes** — los últimos 8 registros con tipo, cuenta y monto.
+
+Desde la barra inferior podés navegar a las cinco secciones principales:
+
+| Sección | Qué hace |
+|---|---|
+| Inicio | Panel de resumen y movimientos recientes |
+| Transacciones | Historial completo con filtros |
+| Cuentas | Gestión de cuentas y saldos |
+| Informes | Gráficos y análisis |
+| Más | Deudas, inversiones, monedas, backup, ajustes |
+
+---
+
+## Configuración inicial recomendada
+
+Antes de registrar tu primer movimiento, te conviene hacer tres cosas:
+
+### 1. Elegir la moneda base
+
+La moneda base es la que usa la app para convertir saldos de cuentas en distintas monedas y mostrar el patrimonio total. Podés cambiarla en **Más > Ajustes**.
+
+<Callout type="tip" title="¿Cuál moneda base elegir?">
+  Elegí la moneda en la que pensás tus finanzas — generalmente la de tu país de residencia. Una vez configurada, todas las conversiones van a esa moneda.
+</Callout>
+
+### 2. Agregar tus monedas
+
+Si operás con más de una moneda (por ejemplo, pesos y dólares), andá a **Más > Monedas** y agregá cada una con su tasa de cambio. Ver [Monedas y tasas de cambio](/es/docs/05-monedas) para detalles.
+
+### 3. Crear tus primeras cuentas
+
+Cada billetera, tarjeta o cuenta bancaria es una **Cuenta** en la app. Andá a **Cuentas > +** para agregar la primera. Podés ponerle un nombre, asignarle un color, un ícono y la moneda en que opera. Ver [Gestión de cuentas](/es/docs/02-cuentas) para el proceso completo.
+
+---
+
+## Cómo fluyen los datos
+
+Mis Gastos no tiene backend. Todo vive en el almacenamiento local de tu dispositivo (base de datos Hive). El flujo es:
+
+```
+Tu teléfono → Hive (local) → pantalla
+```
+
+Nada sale del dispositivo excepto cuando vos elegís exportar el backup. Esto significa:
+
+- Si desinstalás la app sin hacer backup, **perdés todos los datos**.
+- Si cambiás de teléfono, **necesitás exportar e importar** el archivo JSON.
+- Dos teléfonos no se sincronizan automáticamente — usá el backup para pasar los datos.
+
+<Callout type="info" title="Hacé un backup antes de desinstalar">
+  Siempre exportá un backup desde **Más > Backup** antes de desinstalar la app o restablecer el teléfono. El proceso tarda menos de cinco segundos.
+</Callout>
+
+---
+
+## Próximos pasos
+
+Con la app instalada y la moneda base configurada, el siguiente paso natural es agregar tus cuentas:
+
+- [Gestión de cuentas →](/es/docs/02-cuentas)
+- [Registrar tu primera transacción →](/es/docs/03-transacciones)

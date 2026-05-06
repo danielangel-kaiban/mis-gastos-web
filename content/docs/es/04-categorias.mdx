@@ -1,0 +1,116 @@
+---
+title: Categorías personalizadas
+description: Organizá tus movimientos con categorías propias, colores e íconos a tu gusto.
+slug: 04-categorias
+order: 4
+icon: Tag
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Categorías personalizadas
+
+Las **categorías** te permiten clasificar tus transacciones para analizarlas después. Son completamente personalizables: vos definís el nombre, el color y el ícono de cada una.
+
+---
+
+## Categorías de gasto vs ingreso
+
+Cada categoría pertenece a un tipo: **gasto** o **ingreso**. No existe una categoría de "transferencia" — las transferencias entre cuentas no se categorizan.
+
+Esto significa:
+
+- Las categorías de tipo "gasto" sólo aparecen al registrar un gasto.
+- Las categorías de tipo "ingreso" sólo aparecen al registrar un ingreso.
+- En los informes, podés filtrar por tipo y ver las categorías correspondientes.
+
+---
+
+## Crear una categoría
+
+<Steps>
+  <Step number={1} title="Abrí Categorías">
+    Desde la barra inferior, tocá **Más** y luego **Categorías**.
+  </Step>
+  <Step number={2} title="Tocá el botón +">
+    El FAB abre el formulario de nueva categoría.
+  </Step>
+  <Step number={3} title="Completá el formulario">
+    - **Nombre**: ej. "Supermercado", "Restaurantes", "Sueldo".
+    - **Tipo**: gasto o ingreso.
+    - **Ícono**: elegí entre la paleta de íconos disponibles (basados en Material Icons).
+    - **Color**: cualquier color de la paleta del sistema.
+  </Step>
+  <Step number={4} title="Guardá">
+    La categoría queda disponible de inmediato al registrar transacciones.
+  </Step>
+</Steps>
+
+<Callout type="tip" title="Categorías por defecto">
+  La app no trae categorías pre-cargadas — partís de cero. Esto es intencional: cada persona tiene hábitos de gasto distintos. Creá las que realmente usás para que los informes sean significativos.
+</Callout>
+
+---
+
+## Ideas de categorías comunes
+
+**Gastos:**
+
+- Hogar (alquiler, expensas, servicios)
+- Alimentación (supermercado, verdulería)
+- Restaurantes y cafeterías
+- Transporte (nafta, transporte público, taxis)
+- Salud (farmacia, médico, prepaga)
+- Entretenimiento (streaming, cine, salidas)
+- Educación
+- Ropa e indumentaria
+- Tecnología
+
+**Ingresos:**
+
+- Sueldo
+- Freelance / honorarios
+- Alquiler cobrado
+- Dividendos / rendimientos
+- Venta de objetos
+
+---
+
+## Editar una categoría
+
+Tocá cualquier categoría en la lista. El formulario de edición permite cambiar nombre, tipo, color e ícono.
+
+<Callout type="warning" title="Cambiar el tipo puede desaparecer categorías del formulario">
+  Si cambiás una categoría de "gasto" a "ingreso", todas las transacciones de gasto que la usaban siguen existiendo con esa categoría — pero ya no la verás disponible al crear gastos nuevos. Es una situación de borde; si necesitás reorganizar, conviene crear categorías nuevas.
+</Callout>
+
+---
+
+## Eliminar una categoría
+
+Deslizá la categoría hacia la izquierda para eliminarla.
+
+<Callout type="danger" title="Las transacciones no se eliminan">
+  Al borrar una categoría, las transacciones que la tenían asignada **no se eliminan** — quedan sin categoría. Las seguirás viendo en el historial pero no aparecerán en el desglose por categoría de los informes.
+</Callout>
+
+---
+
+## Cómo se usan en los informes
+
+Las categorías son la base del análisis financiero en los informes:
+
+- **Gráfico de torta**: distribución de gastos (o ingresos) por categoría en el período seleccionado.
+- **Ranking**: top 5 categorías más gastadas.
+- **Filtro**: podés ver el historial de una sola categoría desde la pantalla de Transacciones.
+
+Cuanto más consistente seas en categorizar tus movimientos, más útiles son los informes. Una transacción sin categoría no aparece en los gráficos.
+
+---
+
+## Límites
+
+- No hay límite en la cantidad de categorías.
+- No hay subcategorías — la jerarquía es plana.
+- Los nombres no son únicos por tipo — podés tener "Varios" en gastos y "Varios" en ingresos; son entidades separadas.

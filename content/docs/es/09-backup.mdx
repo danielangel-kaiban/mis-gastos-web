@@ -1,0 +1,138 @@
+---
+title: Backup y restauración
+description: Exportá e importá tu base de datos en JSON. Tus datos siempre a salvo.
+slug: 09-backup
+order: 9
+icon: Archive
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Backup y restauración
+
+Mis Gastos guarda todos los datos en el almacenamiento local del teléfono. **No hay sincronización automática con ningún servidor**. El backup manual es la única forma de proteger tu información ante pérdida del dispositivo, reinstalación o cambio de teléfono.
+
+Para acceder: **Más > Backup**.
+
+---
+
+## Qué incluye el backup
+
+El archivo de backup es un **JSON** que contiene:
+
+- Todas tus **cuentas** (nombre, tipo, moneda, color, ícono, saldo inicial).
+- Todas tus **transacciones** (tipo, monto, fecha, nota, categoría, cuenta).
+- Todas tus **categorías** (nombre, tipo, color, ícono).
+- Todas tus **monedas** (código, símbolo, nombre, tasa).
+- Todas tus **deudas** y sus pagos.
+- Todas tus **inversiones** y sus movimientos.
+- Tus **ajustes** (moneda base, preferencias).
+
+---
+
+## Exportar el backup
+
+<Steps>
+  <Step number={1} title="Abrí Backup">
+    Desde **Más > Backup**, buscá la sección **Exportar**.
+  </Step>
+  <Step number={2} title="Tocá Exportar y compartir">
+    La app genera el archivo JSON y abre la **hoja de compartir** del sistema operativo Android.
+  </Step>
+  <Step number={3} title="Guardá en un lugar seguro">
+    Usá la hoja de compartir para:
+    - Guardarlo en Google Drive, Dropbox o cualquier almacenamiento en la nube.
+    - Enviarlo por email o WhatsApp a vos mismo.
+    - Guardarlo en otra carpeta del teléfono.
+  </Step>
+</Steps>
+
+<Callout type="tip" title="Hacé backup regularmente">
+  Una buena práctica es exportar una vez por semana. El archivo pesa pocos kilobytes incluso con miles de transacciones — no es un problema de espacio.
+</Callout>
+
+---
+
+## Importar y reemplazar
+
+Esta opción **borra todos los datos actuales** y los reemplaza con los del archivo de backup.
+
+<Steps>
+  <Step number={1} title="Tocá Importar y reemplazar">
+    En la sección **Importar** de la pantalla de Backup.
+  </Step>
+  <Step number={2} title="Confirmá la advertencia">
+    La app te avisa que los datos actuales serán eliminados. Confirmá solo si estás seguro.
+  </Step>
+  <Step number={3} title="Seleccioná el archivo JSON">
+    El selector de archivos de Android se abre. Navegá hasta el backup que guardaste.
+  </Step>
+  <Step number={4} title="Esperá a que termine">
+    La importación es instantánea para la mayoría de los backups. Al terminar, la app te muestra un mensaje de confirmación.
+  </Step>
+</Steps>
+
+<Callout type="danger" title="Esto borra TODO">
+  Importar y reemplazar elimina permanentemente todos los datos del dispositivo antes de cargar los del backup. No hay forma de deshacer esta operación.
+</Callout>
+
+---
+
+## Importar y fusionar
+
+Esta opción **mantiene los datos existentes** y agrega los del backup. Si hay conflictos de IDs (mismos registros), el backup prevalece (sobrescribe).
+
+**Cuándo usarlo:**
+
+- Tenés datos en dos teléfonos y querés combinarlos.
+- Restaurás desde un backup antiguo pero querés conservar los datos nuevos que cargaste después.
+
+<Callout type="warning" title="Cuidado con los duplicados">
+  La fusión puede crear duplicados si el mismo movimiento existe en ambos conjuntos de datos con IDs diferentes. Revisá el historial después de fusionar.
+</Callout>
+
+---
+
+## Migrar a un teléfono nuevo
+
+El proceso estándar para cambiar de dispositivo:
+
+1. En el teléfono viejo: **Más > Backup > Exportar y compartir** → guardá en la nube.
+2. En el teléfono nuevo: instalá Mis Gastos (APK).
+3. En el teléfono nuevo: **Más > Backup > Importar y reemplazar** → seleccioná el archivo de la nube.
+
+---
+
+## Formato del archivo JSON
+
+El backup es un JSON plano con las siguientes claves en el objeto raíz:
+
+```json
+{
+  "accounts": [...],
+  "transactions": [...],
+  "categories": [...],
+  "currencies": [...],
+  "debts": [...],
+  "debtPayments": [...],
+  "investments": [...],
+  "invMovements": [...],
+  "settings": { "baseCurrencyCode": "ARS" }
+}
+```
+
+El formato es legible — podés abrirlo en cualquier editor de texto para auditar los datos.
+
+---
+
+## Preguntas frecuentes sobre backup
+
+**¿Puedo editar el JSON manualmente y volver a importarlo?**
+Sí, siempre que respetes la estructura. Si modificás un campo con un valor inválido, la importación puede fallar.
+
+**¿Qué pasa si importo un backup de una versión anterior de la app?**
+La app maneja retrocompatibilidad para campos que se agregaron en versiones nuevas: los campos faltantes toman valores por defecto.
+
+**¿El backup incluye el historial de precios de inversiones?**
+Sí — los movimientos de tipo "Actualizar valor" se exportan como `invMovements` y al importarlos el historial se reconstruye.

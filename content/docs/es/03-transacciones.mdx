@@ -1,0 +1,138 @@
+---
+title: Transacciones
+description: Registrá ingresos, gastos y transferencias. Manejo de monedas cruzadas incluido.
+slug: 03-transacciones
+order: 3
+icon: ArrowLeftRight
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Transacciones
+
+Una **transacción** es cualquier movimiento de dinero. Mis Gastos maneja tres tipos:
+
+| Tipo | Qué hace |
+|---|---|
+| **Gasto** | Reduce el saldo de una cuenta. Requiere categoría. |
+| **Ingreso** | Aumenta el saldo de una cuenta. Requiere categoría. |
+| **Transferencia** | Mueve dinero de una cuenta a otra. Sin categoría. |
+
+---
+
+## Registrar una transacción
+
+<Steps>
+  <Step number={1} title="Abrí el formulario">
+    Tocá el ícono **+** en la barra inferior, o desde la pantalla de Transacciones tocá el FAB. También podés llegar desde el panel de inicio.
+  </Step>
+  <Step number={2} title="Elegí el tipo">
+    Las tres pestañas de la parte superior del formulario cambian entre Gasto, Ingreso y Transferencia. El formulario se adapta según el tipo.
+  </Step>
+  <Step number={3} title="Completá los campos">
+    - **Monto**: número positivo en la moneda de la cuenta origen.
+    - **Cuenta**: de dónde sale (o entra) el dinero.
+    - **Categoría**: obligatoria para gastos e ingresos; no aplica a transferencias.
+    - **Fecha**: por defecto es hoy; podés cambiarla para cargar movimientos históricos.
+    - **Nota**: campo opcional para agregar contexto.
+  </Step>
+  <Step number={4} title="Guardá">
+    Tocá **Guardar**. El saldo de la cuenta se actualiza al instante.
+  </Step>
+</Steps>
+
+---
+
+## Tipos de transacción en detalle
+
+### Gasto
+
+Registra un egreso de dinero. El monto se resta del saldo de la cuenta elegida.
+
+**Campos específicos:** cuenta de origen, categoría de tipo "gasto".
+
+**Ejemplo:** Pagás $1.500 en el supermercado con tu tarjeta de débito → creás un gasto de $1.500 desde la cuenta "Visa Débito" en categoría "Supermercado".
+
+### Ingreso
+
+Registra una entrada de dinero. El monto se suma al saldo de la cuenta elegida.
+
+**Campos específicos:** cuenta de destino, categoría de tipo "ingreso".
+
+**Ejemplo:** Cobrar el sueldo de $80.000 en tu cuenta bancaria → creás un ingreso de $80.000 en la cuenta "Cuenta ARS" en categoría "Sueldo".
+
+### Transferencia entre cuentas
+
+Mueve dinero de una cuenta a otra **dentro de la misma app**. No tiene categoría — las transferencias no aparecen en los informes de gastos/ingresos.
+
+**Campos específicos:** cuenta de origen, cuenta de destino.
+
+---
+
+## Transferencias cross-currency
+
+Cuando las cuentas origen y destino tienen **monedas distintas**, aparece un campo adicional: **Monto destino**.
+
+Cómo funciona:
+
+1. Ingresás el monto en la moneda de la cuenta origen (ej: 100 USD).
+2. La app pre-llena automáticamente el monto destino usando la tasa configurada (ej: si 1 USD = 1.000 ARS, te sugiere 100.000 ARS).
+3. Podés editar el monto destino libremente si la tasa real del día difiere.
+
+<Callout type="info" title="La tasa es un sugerido, no una regla">
+  El campo de monto destino es siempre editable. Si el tipo de cambio real del día fue diferente al que tenés en la config, simplemente sobreescribís el valor. La app no obliga a usar la tasa guardada.
+</Callout>
+
+**Campo técnico:** en el modelo de datos, este valor se guarda en `destinationAmount`. Cuando es `null` (transferencia same-currency o dato legado), la app usa `amount` como valor efectivo para la cuenta destino.
+
+---
+
+## Historial y filtros
+
+Desde **Transacciones** (barra inferior) ves el historial completo, agrupado por mes con totales.
+
+Filtros disponibles:
+
+- **Fecha**: rango personalizado o presets (hoy, esta semana, este mes, etc.).
+- **Cuenta**: filtrá por una o varias cuentas.
+- **Categoría**: filtrá por categoría específica.
+- **Tipo**: solo gastos, solo ingresos, solo transferencias.
+
+También podés **buscar por texto** en las notas.
+
+---
+
+## Editar una transacción
+
+Tocá cualquier movimiento en el historial para abrirlo en el formulario de edición. Todos los campos son editables.
+
+<Callout type="tip" title="Corrección retroactiva">
+  Si cargaste mal un monto o una fecha, simplemente editá la transacción. El saldo se recalcula automáticamente con el valor correcto.
+</Callout>
+
+## Eliminar una transacción
+
+Deslizá el movimiento hacia la izquierda en el historial, o usá la opción "Eliminar" dentro del formulario de edición.
+
+<Callout type="warning" title="Eliminar es permanente">
+  No hay papelera de reciclaje. Si eliminás una transacción por error, la única forma de recuperarla es desde un backup previo.
+</Callout>
+
+---
+
+## Agrupación mensual
+
+El historial muestra los movimientos agrupados por mes. Cada grupo incluye:
+
+- El mes y año como encabezado.
+- Los totales de ingresos y gastos del grupo.
+- La lista de transacciones ordenadas por fecha descendente.
+
+---
+
+## Limitaciones conocidas
+
+- Una transacción sólo puede pertenecer a una cuenta origen. No hay splitting entre cuentas.
+- No hay transacciones recurrentes automáticas — cada movimiento se registra manualmente.
+- El campo nota es texto libre sin límite de longitud, pero no admite adjuntos o imágenes.

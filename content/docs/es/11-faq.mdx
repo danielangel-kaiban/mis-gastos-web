@@ -1,0 +1,139 @@
+---
+title: Preguntas frecuentes
+description: Respuestas a las dudas más comunes sobre la app, datos y configuración.
+slug: 11-faq
+order: 11
+icon: HelpCircle
+---
+
+import { Callout } from '@/components/docs/Callout';
+
+# Preguntas frecuentes
+
+---
+
+## Instalación y compatibilidad
+
+**¿En qué versiones de Android funciona Mis Gastos?**
+
+La app requiere Android 6.0 (Marshmallow) o superior. Está probada en Android 10, 11, 12, 13 y 14.
+
+**¿La app está disponible en iOS?**
+
+No. Mis Gastos es exclusivamente para Android. No hay versión para iPhone ni iPad.
+
+**¿Por qué Android bloquea la instalación?**
+
+Android bloquea APKs que no vienen de Play Store por defecto. Activá la opción "Instalar desde fuentes desconocidas" para tu navegador o gestor de archivos en Ajustes > Seguridad (o Ajustes > Aplicaciones > Instalar aplicaciones desconocidas, dependiendo del fabricante).
+
+**¿La app pide permisos especiales?**
+
+Solo los permisos necesarios para su funcionamiento: acceso al almacenamiento (para backup) e internet (para actualizaciones OTA, solo cuando vos lo iniciás). No pide permisos de contactos, cámara, ubicación ni notificaciones.
+
+---
+
+## Datos y privacidad
+
+**¿Mis datos se suben a algún servidor?**
+
+No. Mis Gastos no tiene backend ni cuenta de usuario. Todos los datos viven en el almacenamiento local de tu teléfono. La app no hace ninguna solicitud de red excepto cuando vos verificás actualizaciones manualmente.
+
+**¿Qué pasa con mis datos si desinstalo la app?**
+
+Se borran junto con la app. Android elimina los datos de la aplicación al desinstalarla. **Hacé un backup antes de desinstalar**.
+
+**¿Puedo ver el archivo de backup que genera la app?**
+
+Sí. El backup es un archivo JSON en texto plano. Podés abrirlo en cualquier editor de texto para ver (o editar) tus datos.
+
+**¿Los backups se sincronizan automáticamente con la nube?**
+
+No. La exportación del backup abre la hoja de compartir de Android, donde vos elegís adónde guardarlo (Google Drive, Dropbox, email, etc.). No hay sincronización automática.
+
+---
+
+## Cuentas y transacciones
+
+**¿Puedo cambiar la moneda de una cuenta?**
+
+No directamente si ya tiene transacciones — cambiarla distorsionaría los montos históricos. La solución recomendada es crear una cuenta nueva en la moneda correcta y hacer una transferencia del saldo.
+
+**¿Hay transacciones recurrentes automáticas?**
+
+No. Todos los movimientos se registran manualmente. No hay opción de repetir automáticamente un gasto mensual.
+
+**¿Puedo importar movimientos desde un archivo CSV o Excel?**
+
+No actualmente. El único formato soportado para importar es el JSON de backup generado por la propia app.
+
+**¿Hay un límite de transacciones?**
+
+No hay límite impuesto por la app. El único límite práctico es el almacenamiento del dispositivo, pero un archivo JSON con 50.000 transacciones pesa menos de 50 MB.
+
+**¿Puedo adjuntar fotos o comprobantes a una transacción?**
+
+No. El campo "nota" es texto libre, pero no admite archivos adjuntos ni imágenes.
+
+---
+
+## Informes y categorías
+
+**¿Por qué no aparecen algunas transacciones en los gráficos?**
+
+Probablemente las transacciones no tienen categoría asignada, o el filtro de período/cuenta activo las excluye. Revisá que el período del filtro cubra las fechas de los movimientos.
+
+**¿Puedo tener subcategorías?**
+
+No. La jerarquía de categorías es plana — no hay subcategorías ni agrupaciones. Si necesitás desglose, usá nombres descriptivos (ej: "Salud - Farmacia", "Salud - Médico").
+
+**¿Los informes se actualizan en tiempo real?**
+
+Sí. Los gráficos se recalculan cada vez que abrís la pantalla de Informes o cambiás un filtro.
+
+---
+
+## Deudas e inversiones
+
+**¿Puedo llevar la cuenta de deudas en distintas monedas?**
+
+Sí. Cada deuda tiene su propia moneda. El resumen de totales en el panel de deudas convierte todo a la moneda base.
+
+**¿La app conecta con bolsas de valores para actualizar precios de acciones?**
+
+No. Los precios de las inversiones son siempre manuales. Actualizás el valor actual cuando querés.
+
+**¿Puedo registrar una posición de acciones con múltiples lotes a distintos precios?**
+
+No directamente. La inversión es una posición única. Podés registrar cada compra como un movimiento de "Aporte", lo que acumula el costo total, pero no podés ver el precio promedio por lote.
+
+---
+
+## Actualizaciones
+
+**¿Cómo sé que hay una versión nueva?**
+
+Verificás manualmente desde **Más > Actualizaciones**. La app no hace notificaciones de actualización automáticas.
+
+**¿Puedo actualizar sin perder los datos?**
+
+Sí. La actualización es una instalación por encima de la versión anterior y conserva todos los datos. Igual, siempre es buena práctica hacer un backup antes.
+
+---
+
+## Problemas comunes
+
+**La app se cierra inesperadamente al abrir**
+
+Intentá desinstalar y volver a instalar el APK. Si tenés un backup, importalo después. Si el problema persiste con una versión concreta del APK, verificá que tu versión de Android es compatible.
+
+**El backup no se importa correctamente**
+
+Asegurate de que el archivo es el JSON generado por la app (no un archivo editado manualmente con errores de sintaxis). El JSON debe tener el objeto raíz con las claves estándar: `accounts`, `transactions`, etc.
+
+**El saldo de una cuenta no cuadra con lo que espero**
+
+El saldo es `saldo inicial + Σ ingresos − Σ gastos ± transferencias`. Revisá el historial de la cuenta filtrando por ella en Transacciones para identificar movimientos inesperados.
+
+<Callout type="info" title="¿Tu pregunta no está aquí?">
+  Usá la sección de contacto en el sitio para enviarnos tu consulta. Respondemos a la brevedad.
+</Callout>

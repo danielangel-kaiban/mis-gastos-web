@@ -1,0 +1,112 @@
+---
+title: Informes
+description: Cinco vistas de análisis de tus finanzas — categorías, mensual, patrimonio, ranking y por persona.
+slug: 06-informes
+order: 6
+icon: BarChart3
+---
+
+import { Callout } from '@/components/docs/Callout';
+
+# Informes
+
+Los **Informes** transforman tus transacciones en gráficos. Hay cinco pestañas, cada una con un ángulo diferente sobre tus finanzas.
+
+Para acceder: tocá **Informes** en la barra inferior de navegación.
+
+---
+
+## Filtros globales
+
+Antes de revisar las pestañas, los **filtros** en la parte superior se aplican a todas las vistas:
+
+- **Período**: presets rápidos (este mes, este año, últimos 30 días, etc.) o rango personalizado con selector de fechas.
+- **Cuentas**: podés limitar el análisis a una o varias cuentas específicas.
+- **Categorías**: filtrá por categorías concretas.
+- **Tipo**: solo gastos, solo ingresos, o ambos.
+
+Los totales de ingresos y gastos del período seleccionado se muestran debajo del panel de filtros como referencia rápida.
+
+<Callout type="tip" title="Colapsá los filtros para más espacio">
+  Tocá el encabezado del panel de filtros para contraerlo y darle más espacio al gráfico. El estado se recuerda mientras estás en la pantalla.
+</Callout>
+
+---
+
+## Pestaña 1 — Categorías (torta)
+
+Muestra un **gráfico de torta** con la distribución de gastos (o ingresos, según el filtro de tipo) por categoría.
+
+Qué podés ver:
+
+- Cada tajada es una categoría, con su porcentaje y monto en moneda base.
+- Tocando una tajada, se resalta y muestra el detalle de esa categoría.
+- Si hay muchas categorías pequeñas, las menores quedan agrupadas en "Otros".
+
+**Cuándo usarlo:** para entender en qué categorías se va la mayor parte del dinero en el período.
+
+---
+
+## Pestaña 2 — Mensual (barras)
+
+Muestra **barras apiladas o agrupadas** comparando ingresos y gastos mes a mes durante los últimos 6 meses.
+
+Qué podés ver:
+
+- Barra de ingresos (verde) vs barra de gastos (roja) por mes.
+- El mes con mayor gasto queda visualmente destacado.
+- Los valores están en moneda base.
+
+**Cuándo usarlo:** para detectar tendencias — si los gastos vienen subiendo, si un mes fue atípico, si los ingresos superan consistentemente los gastos.
+
+<Callout type="info" title="Ventana fija de 6 meses">
+  Esta vista siempre muestra los últimos 6 meses calendario, independientemente del filtro de período. Es la única pestaña que no obedece al filtro de fecha.
+</Callout>
+
+---
+
+## Pestaña 3 — Patrimonio (línea)
+
+Muestra la **evolución del patrimonio neto** a lo largo del tiempo — es decir, el saldo total de todas tus cuentas (en moneda base) día a día.
+
+Qué podés ver:
+
+- Una línea de tiempo desde el inicio del período filtrado hasta hoy.
+- Cada punto en la línea es el patrimonio total al cierre de ese día.
+- Si el patrimonio sube, estás ahorrando; si baja, estás gastando más de lo que ingresa.
+
+**Cuándo usarlo:** para ver el impacto real de tus hábitos financieros en el tiempo. Un mes donde "no gastaste mucho" pero la línea bajó puede indicar inversiones o transferencias no contabilizadas.
+
+---
+
+## Pestaña 4 — Ranking
+
+Muestra las **top 5 categorías** con mayor gasto (o ingreso) en el período, en un gráfico de barras horizontales.
+
+Qué podés ver:
+
+- Las 5 categorías más importantes, ordenadas de mayor a menor.
+- Monto absoluto y barra proporcional para comparar entre ellas.
+
+**Cuándo usarlo:** para identificar rápido cuáles son tus mayores fuentes de gasto o ingreso sin navegar la torta completa.
+
+---
+
+## Pestaña 5 — Personas
+
+Muestra el gasto (o ingreso) **agrupado por la nota de las transacciones**, útil para llevar cuentas con personas concretas.
+
+<Callout type="info" title="Cómo funciona el agrupamiento por persona">
+  Esta pestaña agrupa las transacciones por el contenido del campo "nota". Si siempre que pagás algo para Juan escribís "Juan" en la nota, la pestaña Personas mostrará un subtotal para "Juan". No hay un campo de "persona" explícito — se basa en la nota.
+</Callout>
+
+**Cuándo usarlo:** si usás la app para llevar gastos compartidos o hacer un seguimiento de quién te pagó qué.
+
+---
+
+## Tips para sacar más provecho
+
+1. **Categorizá siempre**: una transacción sin categoría no aparece en la torta ni en el ranking. Si tenés muchos movimientos sin categoría, los informes son incompletos.
+2. **Usá el filtro de cuenta**: si querés analizar solo lo que gastás con tu tarjeta de crédito, filtrá por esa cuenta.
+3. **Comparación mes a mes**: el gráfico mensual es la forma más rápida de ver si tu situación financiera mejoró o empeoró.
+4. **Patrimonio como brújula**: revisá la pestaña Patrimonio una vez por semana. Si la línea va para abajo consistentemente, hay que revisar gastos.

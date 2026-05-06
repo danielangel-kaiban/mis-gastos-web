@@ -1,0 +1,135 @@
+---
+title: Inversiones y portafolio
+description: Seguí acciones, cripto, bonos y más. ROI automático y evolución del portafolio.
+slug: 08-inversiones
+order: 8
+icon: TrendingUp
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Inversiones y portafolio
+
+La sección de **Inversiones** te permite llevar el control de activos financieros fuera de las cuentas corrientes: acciones, criptomonedas, bonos, plazos fijos, ETF, fondos y más.
+
+Para acceder: **Más > Inversiones**.
+
+---
+
+## Tipos de inversión soportados
+
+| Tipo | Ejemplos |
+|---|---|
+| **Acciones** | Apple, YPF, Mercado Libre |
+| **Criptomonedas** | Bitcoin, Ethereum, USDT |
+| **Bonos** | Bonos soberanos, obligaciones negociables |
+| **ETF** | SPY, QQQ, cedears |
+| **Fondo** | FCI, hedge funds |
+| **Inmueble** | Propiedades, terrenos |
+| **Plazo fijo** | Depósitos a plazo, cauciones |
+| **Otro** | Cualquier activo no listado |
+
+---
+
+## Crear una inversión
+
+<Steps>
+  <Step number={1} title="Abrí Inversiones">
+    Desde **Más > Inversiones**, tocá el FAB.
+  </Step>
+  <Step number={2} title="Completá los datos base">
+    - **Nombre**: identificador de la inversión (ej: "BTC", "AAPL", "Dpto. Palermo").
+    - **Tipo**: uno de los ocho tipos disponibles.
+    - **Moneda**: la moneda en que está denominada.
+    - **Valor actual**: el valor de mercado actual. Este campo se actualiza manualmente cada vez que querés reflejar un cambio de precio.
+    - **Color e ícono**: para identificarla visualmente.
+    - **Nota** (opcional).
+  </Step>
+  <Step number={3} title="Guardá">
+    La inversión aparece en la lista del portafolio.
+  </Step>
+</Steps>
+
+---
+
+## Movimientos de inversión
+
+Cada inversión puede tener cuatro tipos de movimientos:
+
+| Tipo | Qué hace |
+|---|---|
+| **Aporte** | Compraste o depositaste dinero en esta inversión. |
+| **Retiro** | Vendiste o retiraste dinero de esta inversión. |
+| **Rendimiento/Dividendo** | Recibiste un pago de dividendos o intereses. |
+| **Actualizar valor** | Actualizás el valor de mercado actual sin movimiento de dinero. |
+
+Para registrar un movimiento, abrí la inversión y tocá **+ Movimiento**.
+
+<Callout type="info" title="Aporte y Retiro pueden ligar a una cuenta">
+  Al registrar un aporte o retiro, podés seleccionar una cuenta de la app. Si lo hacés, se crea automáticamente una transacción en esa cuenta (gasto para el aporte, ingreso para el retiro) para que el saldo de la cuenta también quede actualizado.
+</Callout>
+
+---
+
+## Cálculo del ROI
+
+El ROI (retorno sobre la inversión) se calcula automáticamente a partir de los movimientos:
+
+```
+Ganancia = Valor actual + Total retirado + Total dividendos − Total aportado
+ROI %    = (Ganancia / Total aportado) × 100
+```
+
+**Ejemplo:**
+
+- Aportaste USD 1.000 en acciones de AAPL.
+- Recibiste USD 20 en dividendos.
+- El valor actual de las acciones es USD 1.150.
+- ROI = (1.150 + 20 − 1.000) / 1.000 × 100 = **17%**
+
+<Callout type="tip" title="El ROI es sobre el total aportado, no el neto">
+  Si aportaste USD 1.000 y después retiraste USD 200, la base sigue siendo USD 1.000 (total aportado), no USD 800 (neto invertido). Esto puede diferir de otras calculadoras de ROI.
+</Callout>
+
+---
+
+## Actualizar el valor de mercado
+
+Las inversiones no se actualizan solas — la app no tiene conexión a servicios de precios. Para actualizar el valor:
+
+1. Abrí la inversión.
+2. Tocá **+ Movimiento**.
+3. Elegí tipo **Actualizar valor**.
+4. Ingresá el nuevo valor total de mercado.
+
+Este movimiento no genera ninguna transacción en cuentas — solo actualiza el campo "valor actual" de la inversión.
+
+---
+
+## Vista del portafolio
+
+La pantalla principal de Inversiones muestra:
+
+- Lista de todas las inversiones con valor actual y ROI.
+- Total del portafolio en moneda base (sumando todas las inversiones convertidas).
+
+El total del portafolio se muestra también en el panel de inicio como parte del patrimonio neto si tenés inversiones cargadas.
+
+---
+
+## Eliminar una inversión
+
+Tocá la inversión y buscá la opción eliminar.
+
+<Callout type="danger" title="Eliminar borra todos los movimientos de la inversión">
+  Si la inversión tenía movimientos ligados a cuentas, las transacciones en las cuentas **no se eliminan** — quedan como registros independientes. Solo se elimina la inversión y su historial interno.
+</Callout>
+
+---
+
+## Limitaciones
+
+- No hay precios en tiempo real — todo es manual.
+- El valor actual es un único número (sin histórico de precios automático). El historial de "Actualizar valor" funciona como registro manual de precios.
+- No hay soporte para posiciones múltiples (lotes a distintos precios) — la inversión es una única posición.

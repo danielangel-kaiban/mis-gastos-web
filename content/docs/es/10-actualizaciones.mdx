@@ -1,0 +1,110 @@
+---
+title: Actualizaciones OTA
+description: Actualizá la app directamente desde ella misma, sin Play Store ni tiendas.
+slug: 10-actualizaciones
+order: 10
+icon: RefreshCw
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Actualizaciones OTA
+
+Mis Gastos incluye un sistema de actualización **Over-The-Air (OTA)**: podés verificar si hay una versión nueva y descargarla sin salir de la app y sin pasar por ninguna tienda.
+
+Para acceder: **Más > Actualizaciones**.
+
+---
+
+## Cómo funciona
+
+El sistema OTA funciona con una URL de endpoint que apunta a un archivo `update.json` publicado en un servidor. La app consulta ese endpoint, compara la versión disponible con la instalada y, si hay una más nueva, ofrece descargarla.
+
+El archivo `update.json` tiene esta estructura:
+
+```json
+{
+  "version": "1.2.0",
+  "build": 12,
+  "apkUrl": "https://ejemplo.com/mis-gastos-1.2.0.apk",
+  "releaseNotes": "Corrección de errores y mejoras de rendimiento.",
+  "size": 8.4
+}
+```
+
+---
+
+## Verificar actualizaciones
+
+<Steps>
+  <Step number={1} title="Configurá el endpoint (primera vez)">
+    Si es la primera vez que usás esta función, necesitás ingresar la URL del endpoint. En la pantalla de Actualizaciones, encontrarás un campo de texto para la URL. Ingresá la URL que corresponde a tu distribución de la app (generalmente la misma fuente de donde descargaste el APK).
+  </Step>
+  <Step number={2} title="Tocá Buscar actualización">
+    La app hace una solicitud HTTP al endpoint y obtiene el `update.json`.
+  </Step>
+  <Step number={3} title="Revisá el resultado">
+    - Si la versión remota es **mayor** a la instalada, aparece la información de la nueva versión con notas de cambios y tamaño.
+    - Si estás en la **última versión**, la app lo confirma.
+    - Si hay un **error** (endpoint no disponible, sin conexión), se muestra el mensaje de error.
+  </Step>
+</Steps>
+
+---
+
+## Descargar e instalar la actualización
+
+<Steps>
+  <Step number={1} title="Tocá Descargar">
+    La app descarga el APK en segundo plano. Una barra de progreso muestra el avance con el tamaño descargado vs el total.
+  </Step>
+  <Step number={2} title="Esperá a que termine">
+    La descarga puede tardar según tu conexión y el tamaño del APK.
+  </Step>
+  <Step number={3} title="Instalá">
+    Una vez descargado, aparece el botón **Instalar**. Al tocarlo, Android abre el instalador nativo con el APK descargado.
+  </Step>
+  <Step number={4} title="Confirmá la instalación">
+    El instalador de Android muestra los detalles del APK y pide confirmación. Tocá **Actualizar** (o **Instalar**).
+  </Step>
+</Steps>
+
+<Callout type="info" title="Los datos no se pierden al actualizar">
+  Las actualizaciones por encima de la misma app conservan todos tus datos. El sistema de almacenamiento Hive persiste entre versiones. Aun así, **hacé un backup antes de actualizar** como buena práctica.
+</Callout>
+
+---
+
+## Versión instalada
+
+En la parte superior de la pantalla de Actualizaciones siempre ves:
+
+- **Versión instalada**: número de versión semántico (ej: `1.1.0`).
+- **Build**: número de build interno.
+
+---
+
+## Endpoint personalizado
+
+La URL del endpoint se guarda localmente y persiste entre sesiones. Podés cambiarla en cualquier momento desde el campo de texto. Si distribuís la app en tu organización o equipo, configurás tu propio `update.json` en tu servidor y todos se actualizan desde ahí.
+
+<Callout type="tip" title="Endpoint de la distribución oficial">
+  Si descargaste Mis Gastos desde la página oficial, la URL del endpoint es la misma que aparece en la página de descargas. Está disponible en [Descargas](/es/descargas).
+</Callout>
+
+---
+
+## Preguntas frecuentes
+
+**¿Qué pasa si cierro la app mientras se descarga?**
+La descarga se cancela. Tenés que volver a iniciarla.
+
+**¿La app verifica actualizaciones automáticamente al abrir?**
+No. La verificación es siempre manual — la app nunca hace solicitudes de red sin que vos lo inicies.
+
+**¿Puedo usar cualquier URL como endpoint?**
+Sí, siempre que responda con un JSON válido en el formato esperado. Podés alojar el `update.json` en GitHub Pages, un bucket S3, un VPS, o cualquier hosting estático.
+
+**¿La descarga verifica la integridad del APK?**
+Actualmente no hay verificación de checksum. Si necesitás validar la integridad del archivo, hacelo manualmente comparando el hash SHA256 del APK descargado con el publicado en la página de distribución.

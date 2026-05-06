@@ -1,0 +1,136 @@
+---
+title: Deudas y préstamos
+description: Registrá lo que debés y lo que te deben. Pagos parciales y seguimiento completo.
+slug: 07-deudas
+order: 7
+icon: UserMinus
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Deudas y préstamos
+
+La sección de **Deudas** te permite llevar el control de dinero que prestaste o que te prestaron, con seguimiento de pagos parciales y historial editable.
+
+Para acceder: **Más > Deudas**.
+
+---
+
+## Tipos de deuda
+
+Mis Gastos distingue dos direcciones:
+
+| Tipo | Significado |
+|---|---|
+| **Me deben** (`theyOweMe`) | Vos prestaste dinero; alguien te lo debe a vos. |
+| **Debo** (`iOwe`) | Alguien te prestó dinero; vos se lo debés a ellos. |
+
+---
+
+## Pestañas de la pantalla
+
+La pantalla tiene cuatro pestañas:
+
+1. **Por persona**: agrupa todas las deudas activas por contraparte (nombre de la persona o entidad).
+2. **Te deben**: lista de deudas activas del tipo "Me deben".
+3. **Debes**: lista de deudas activas del tipo "Debo".
+4. **Pagadas**: deudas completamente saldadas.
+
+---
+
+## Crear una deuda
+
+<Steps>
+  <Step number={1} title="Tocá el botón +">
+    El FAB de la pantalla de Deudas abre el formulario.
+  </Step>
+  <Step number={2} title="Completá el formulario">
+    - **Contraparte**: nombre de la persona o entidad (ej: "Juan", "Banco Nación").
+    - **Tipo**: si vos debés o si te deben.
+    - **Moneda**: la moneda en que está denominada la deuda.
+    - **Monto original**: el monto total de la deuda.
+    - **Fecha de vencimiento** (opcional): si la deuda tiene una fecha límite.
+    - **Nota** (opcional): contexto adicional.
+  </Step>
+  <Step number={3} title="Guardá">
+    La deuda aparece en la lista correspondiente con el monto pendiente igual al monto original.
+  </Step>
+</Steps>
+
+---
+
+## Registrar un pago parcial
+
+<Steps>
+  <Step number={1} title="Abrí la deuda">
+    Tocá la deuda en la lista para ver su detalle.
+  </Step>
+  <Step number={2} title="Tocá Registrar pago">
+    El botón de pago abre el formulario de pago parcial.
+  </Step>
+  <Step number={3} title="Completá el pago">
+    - **Monto**: cuánto se pagó en esta cuota. Puede ser cualquier valor hasta el monto pendiente.
+    - **Fecha**: fecha del pago.
+    - **Cuenta** (opcional): si querés ligar el pago a una cuenta de la app para que también registre la transacción.
+    - **Nota** (opcional).
+  </Step>
+  <Step number={4} title="Guardá">
+    El monto pendiente de la deuda se reduce en el monto del pago. Si el total pagado alcanza el monto original, la deuda pasa automáticamente a **Pagadas**.
+  </Step>
+</Steps>
+
+<Callout type="tip" title="Pagos ligados a cuenta">
+  Si marcás una cuenta al registrar el pago, la app crea automáticamente una transacción en esa cuenta (ingreso o gasto según la dirección de la deuda). Es la forma más limpia de mantener el saldo de la cuenta sincronizado con el pago.
+</Callout>
+
+---
+
+## Panel de resumen
+
+En la parte superior de la pantalla de Deudas hay un strip de resumen que muestra:
+
+- **Total que te deben**: suma de todas las deudas activas de tipo "Me deben", en moneda base.
+- **Total que debés**: suma de todas las deudas activas de tipo "Debo", en moneda base.
+
+Las deudas en monedas distintas a la base se convierten usando las tasas configuradas.
+
+---
+
+## Deudas vencidas
+
+Si configuraste una fecha de vencimiento y la deuda sigue activa pasada esa fecha, aparece marcada como **vencida** en la lista.
+
+<Callout type="warning" title="Solo es un indicador visual">
+  La marca de "vencida" es informativa — la app no bloquea ni cobra automáticamente nada. Es un recordatorio visual de que ese plazo pasó.
+</Callout>
+
+---
+
+## Editar o eliminar una deuda
+
+Tocá la deuda para ver las opciones de edición. Podés cambiar todos los campos del formulario original.
+
+Eliminar una deuda elimina también su historial de pagos. Los pagos que hayan generado transacciones en cuentas **no se eliminan** — quedan como transacciones huérfanas.
+
+---
+
+## Historial de pagos
+
+El detalle de cada deuda muestra la lista completa de pagos registrados: fecha, monto y nota. Podés editar o eliminar cada pago individualmente.
+
+<Callout type="info" title="Editar un pago recalcula el pendiente">
+  Si modificás el monto de un pago, el monto pendiente de la deuda se recalcula automáticamente. Lo mismo pasa si eliminás un pago.
+</Callout>
+
+---
+
+## Ejemplo completo
+
+Escenario: le prestaste ARS 50.000 a María el 1 de enero. Ella te hizo dos pagos parciales.
+
+1. Creás deuda tipo "Me deben", contraparte "María", monto original 50.000 ARS.
+2. El 15 de enero, María te paga ARS 20.000 → registrás un pago de 20.000. Pendiente: 30.000.
+3. El 1 de febrero, María te paga el resto → registrás un pago de 30.000. Pendiente: 0. La deuda pasa a "Pagadas".
+
+En la pestaña "Por persona" verás el agrupamiento de ambas deudas bajo "María" mientras estén activas.

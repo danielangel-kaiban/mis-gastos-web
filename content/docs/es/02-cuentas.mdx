@@ -1,0 +1,114 @@
+---
+title: Gestión de cuentas
+description: Creá tarjetas, billeteras, cuentas bancarias y efectivo. Personalizá color, ícono y moneda.
+slug: 02-cuentas
+order: 2
+icon: Wallet
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Gestión de cuentas
+
+Las **cuentas** son la base de Mis Gastos. Cada medio de pago que usás — tarjeta de débito, billetera digital, cuenta bancaria, efectivo — vive como una cuenta separada con su propio saldo, color y moneda.
+
+---
+
+## Tipos de cuenta
+
+La app soporta cinco tipos:
+
+| Tipo | Cuándo usarlo |
+|---|---|
+| **Tarjeta** | Débito, crédito o prepaga |
+| **Billetera** | Digital (Mercado Pago, PayPal, etc.) |
+| **Banco** | Cuenta corriente o caja de ahorro |
+| **Efectivo** | Dinero físico que llevás encima |
+| **Otra** | Cualquier medio no listado arriba |
+
+El tipo no afecta el funcionamiento — es puramente visual para identificar la cuenta de un vistazo.
+
+---
+
+## Crear una cuenta
+
+<Steps>
+  <Step number={1} title="Abrí la sección Cuentas">
+    Tocá **Cuentas** en la barra inferior de navegación.
+  </Step>
+  <Step number={2} title="Tocá el botón +">
+    El FAB (botón flotante) en la esquina inferior derecha abre el formulario de nueva cuenta.
+  </Step>
+  <Step number={3} title="Completá los campos">
+    - **Nombre**: cómo querés llamar a la cuenta (ej: "Visa Santander").
+    - **Tipo**: elegí entre los cinco tipos disponibles.
+    - **Moneda**: la moneda en que opera esta cuenta.
+    - **Saldo inicial**: el saldo que tiene la cuenta al momento de crearla. Podés poner 0 si la creás desde cero o cargás el historial después.
+    - **Color**: cualquier color de la paleta; ayuda a distinguir cuentas de un vistazo.
+    - **Ícono**: elegí el ícono que mejor representa la cuenta.
+  </Step>
+  <Step number={4} title="Guardá">
+    Tocá **Guardar**. La cuenta aparece al instante en la lista de cuentas y en el panel de inicio.
+  </Step>
+</Steps>
+
+<Callout type="tip" title="Saldo inicial">
+  Si ya tenés movimientos anteriores que no vas a cargar, usá el saldo real actual como saldo inicial. Si vas a cargar el historial completo, empezá desde 0 y el saldo se calculará desde tus transacciones.
+</Callout>
+
+---
+
+## Cómo se calcula el saldo
+
+El saldo que ves en cada cuenta es dinámico. La app lo calcula así:
+
+```
+Saldo actual = Saldo inicial + Σ(ingresos) − Σ(gastos) ± Σ(transferencias)
+```
+
+Nunca guardás el saldo directamente — es siempre una derivación de tus transacciones. Esto significa que si corregís o borrás un movimiento, el saldo se actualiza al instante.
+
+---
+
+## Editar una cuenta
+
+Tocá cualquier cuenta en la lista para abrirla. Desde el detalle podés:
+
+- Cambiar nombre, tipo, color o ícono.
+- Modificar el saldo inicial.
+- Ver el historial de transacciones filtrado por esa cuenta.
+
+<Callout type="warning" title="No podés cambiar la moneda de una cuenta con movimientos">
+  Si una cuenta ya tiene transacciones registradas, cambiar su moneda distorsionaría todos los montos históricos. Si necesitás hacer el cambio, creá una cuenta nueva y hacé una transferencia.
+</Callout>
+
+---
+
+## Eliminar una cuenta
+
+Deslizá la cuenta hacia la izquierda en la lista para ver el botón de eliminar. La app te pide confirmación.
+
+<Callout type="danger" title="Eliminar borra las transacciones asociadas">
+  Al eliminar una cuenta, todas sus transacciones **se eliminan también**. Si solo querés ocultar la cuenta, por ahora no hay una opción de "archivar" — considerá renombrarla como "Inactiva" como alternativa.
+</Callout>
+
+---
+
+## Cuentas en múltiples monedas
+
+Podés tener cuentas en distintas monedas. Por ejemplo:
+
+- Cuenta "Efectivo USD" → moneda USD
+- Cuenta "Cuenta ARS" → moneda ARS
+- Cuenta "Crypto ETH" → moneda ETH
+
+El **patrimonio total** en el panel de inicio convierte todos los saldos a la moneda base usando las tasas que configuraste. Ver [Monedas y tasas de cambio](/es/docs/05-monedas).
+
+---
+
+## Límites y consideraciones
+
+- No hay límite de cuentas.
+- Una cuenta no puede tener dos monedas distintas — para eso creás dos cuentas separadas.
+- El saldo nunca puede ser negativo en la lógica de la app (podés llegar a cero, pero los gastos que excedan el saldo simplemente lo llevan a negativo visualmente — la app no bloquea el registro).

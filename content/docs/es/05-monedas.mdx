@@ -1,0 +1,116 @@
+---
+title: Monedas y tasas de cambio
+description: Configurá múltiples monedas y definí las tasas de conversión para tu patrimonio total.
+slug: 05-monedas
+order: 5
+icon: Globe
+---
+
+import { Callout } from '@/components/docs/Callout';
+import { Steps, Step } from '@/components/docs/Steps';
+
+# Monedas y tasas de cambio
+
+Mis Gastos soporta múltiples monedas simultáneas. Cada cuenta tiene su propia moneda, y la app convierte automáticamente al calcular el **patrimonio total** en el panel de inicio.
+
+---
+
+## La moneda base
+
+La **moneda base** es la moneda de referencia para todas las conversiones. Es la que ves en:
+
+- El patrimonio total del panel de inicio.
+- Los ingresos y gastos del mes (panel de inicio).
+- Los informes cuando mezclás cuentas de distintas monedas.
+
+Podés cambiarla en **Más > Ajustes > Moneda base**.
+
+<Callout type="warning" title="Cambiar la moneda base afecta todos los cálculos">
+  Si cambiás la moneda base después de tener datos cargados, todos los totales y gráficos se recalculan con las tasas actuales. Los montos individuales no cambian, pero los agregados sí.
+</Callout>
+
+---
+
+## Agregar una moneda
+
+<Steps>
+  <Step number={1} title="Abrí Monedas">
+    Desde la barra inferior, tocá **Más > Monedas**.
+  </Step>
+  <Step number={2} title="Tocá Nueva moneda">
+    El FAB abre el formulario.
+  </Step>
+  <Step number={3} title="Completá los campos">
+    - **Código**: identificador corto, ej. `USD`, `EUR`, `BTC`. Puede ser cualquier texto — la app no valida contra un listado oficial.
+    - **Símbolo**: carácter que aparece delante del monto, ej. `$`, `€`, `₿`.
+    - **Nombre**: nombre descriptivo, ej. "Dólar estadounidense".
+    - **Tasa**: cuántas unidades de *esta moneda* equivalen a **1 unidad de la moneda base**.
+  </Step>
+  <Step number={4} title="Guardá">
+    La moneda queda disponible para asignar a cuentas.
+  </Step>
+</Steps>
+
+---
+
+## Cómo funciona la tasa
+
+La tasa expresa la relación `X unidades de esta moneda = 1 moneda base`.
+
+**Ejemplo:** si tu moneda base es ARS y querés agregar USD:
+
+- Si 1 USD = 1.200 ARS, entonces la tasa del USD es **1200** (necesitás 1200 ARS para obtener 1 USD? No — la tasa es cuántos USD por 1 ARS... espera).
+
+La pantalla te lo muestra claro: *"1 ARS = X USD"* y *"1 USD = Y ARS"*. La fórmula interna es:
+
+```
+valor_en_base = valor_en_moneda × (1 / rateToBase)
+```
+
+donde `rateToBase` es "cuántas unidades de esta moneda equivalen a 1 unidad de la base".
+
+**Ejemplo concreto:**
+
+- Moneda base: ARS
+- Moneda: USD con `rateToBase = 1200` → 1200 ARS = 1 USD
+- Tenés una cuenta con USD 100
+- Patrimonio en ARS = 100 / (1/1200) = ... la app lo convierte multiplicando: `100 × 1200 = 120.000 ARS`
+
+<Callout type="tip" title="Actualizá las tasas regularmente">
+  Las tasas no se actualizan solas — son manuales. Si el tipo de cambio cambia significativamente, entrá a **Más > Monedas**, tocá la moneda y actualizá la tasa. Los saldos en el panel de inicio reflejarán el nuevo valor de inmediato.
+</Callout>
+
+---
+
+## La moneda base en el listado
+
+En la pantalla de Monedas, la moneda base aparece marcada con el chip **"Base"**. No se puede eliminar ni deslizar para borrar. Sí podés editar su nombre y símbolo.
+
+---
+
+## Eliminar una moneda
+
+Deslizá la moneda hacia la izquierda.
+
+<Callout type="danger" title="No podés eliminar una moneda en uso">
+  Si hay cuentas asignadas a esa moneda, la eliminación falla. Primero debés eliminar o reasignar las cuentas que la usan.
+</Callout>
+
+---
+
+## Monedas en transferencias cross-currency
+
+Cuando hacés una transferencia entre dos cuentas con monedas distintas, la app:
+
+1. Usa la tasa configurada para sugerir el monto destino.
+2. Te permite editarlo libremente si la tasa del momento es diferente.
+
+El monto real acreditado en la cuenta destino es el que escribís en el campo **Monto destino** — no una derivación automática. Esto te da control total sobre el tipo de cambio aplicado a cada operación. Ver [Transferencias cross-currency](/es/docs/03-transacciones#transferencias-cross-currency).
+
+---
+
+## Casos de uso
+
+- **Multi-moneda simple**: tenés una cuenta en ARS y otra en USD. Configurás las dos monedas y ves el patrimonio total en ARS.
+- **Criptomonedas**: agregás BTC con código `BTC`, símbolo `₿` y la tasa actual. Actualizás la tasa cada vez que querés ver el valor real.
+- **Monedas ficticias**: podés crear "puntos" o "créditos" como moneda con tasa 1:1 a la base si querés hacer seguimiento de saldos en unidades no-monetarias.
