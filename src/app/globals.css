@@ -162,3 +162,52 @@
     @apply font-sans;
   }
 }
+
+@media print {
+  /* Hide navigation chrome */
+  aside,
+  nav,
+  header,
+  footer,
+  .docs-pager,
+  [class*="MobileDocsNav"],
+  [class*="DocsPager"],
+  [class*="DocsBreadcrumb"],
+  [class*="TableOfContents"] {
+    display: none !important;
+  }
+
+  /* Let doc content fill the page */
+  .prose-docs {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  /* Chapter breaks */
+  h1 {
+    page-break-before: always;
+  }
+  h1:first-of-type {
+    page-break-before: avoid;
+  }
+
+  /* Keep blocks together */
+  .callout,
+  .steps,
+  pre,
+  table,
+  figure {
+    page-break-inside: avoid;
+  }
+
+  /* Links */
+  a {
+    color: #005f56;
+    text-decoration: underline;
+  }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #546e7a;
+  }
+}
